@@ -9,6 +9,31 @@
       content="{{ page.description | default: site.description }}"
     />
     <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ page.url | absolute_url }}" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{ page.meta_title | default: site.title }}" />
+    <meta property="og:description" content="{{ page.description | default: site.description }}" />
+    <meta property="og:url" content="{{ page.url | absolute_url }}" />
+
+    <!-- JSON-LD structured data (WSG 4.4 — Structure Metadata for Machine Readability) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "SUSTAINABILITY.md",
+      "url": "https://mgifford.github.io/SUSTAINABILITY.md/",
+      "description": "The open standard for sustainability transparency, governance, and lower-impact engineering workflows.",
+      "author": {
+        "@type": "Organization",
+        "name": "SUSTAINABILITY.md Project",
+        "url": "https://mgifford.github.io/SUSTAINABILITY.md/"
+      }
+    }
+    </script>
   </head>
   <body>
     <div class="page-shell">
@@ -31,6 +56,29 @@
             </aside>
           </div>
         </header>
+
+        {% if page.notice_experimental %}
+        <section class="notice-experimental" aria-label="Experimental status notice">
+          <div class="wrap">
+            <p class="notice-heading">⚠️ Experimental — Validate Before Use</p>
+            <p>
+              This project is <strong>still experimental</strong>. Content was developed with human oversight and AI-assisted drafting,
+              and <strong>has not yet been fully validated in real-world conditions</strong>.
+              Impacts may vary significantly depending on where and how it is implemented.
+            </p>
+            <p>
+              <strong>Do not expect that simply adding a <code>SUSTAINABILITY.md</code> file will make your project sustainable.</strong>
+              What it <em>can</em> do is signal that sustainability matters, make your development practices explicit,
+              and provide structure for ongoing improvement.
+            </p>
+            <p>
+              <strong>Please share your experience</strong> — positive or negative — in the
+              <a href="https://github.com/mgifford/sustainability.md/issues">issue queue</a>.
+              Include links and references so claims can be examined and discussed by the community.
+            </p>
+          </div>
+        </section>
+        {% endif %}
 
         <section id="why">
           <div class="wrap">

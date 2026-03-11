@@ -5,8 +5,9 @@ description: The open standard for sustainability transparency, governance, and 
 hero_title: SUSTAINABILITY.md
 hero_lede_1: A practical, open format for documenting sustainability commitments, engineering guardrails, and measurable progress.
 hero_lede_2: Think of SUSTAINABILITY.md as a <strong>README for digital sustainability</strong> — a predictable place where contributors, maintainers, and AI agents can find your standards.
-primary_cta_label: Start with the Template
-primary_cta_url: ./SUSTAINABILITY-template.md
+primary_cta_label: Explore Framework
+primary_cta_url: "#framework"
+notice_experimental: true
 secondary_cta_label: View on GitHub
 secondary_cta_url: https://github.com/mgifford/sustainability.md
 code_card_title: Simple Sample SUSTAINABILITY.md
