@@ -18,6 +18,10 @@ This repository uses AI-assisted drafting and implementation support. Human cont
 - CI guardrails that improve measurability.
 - Documentation that helps teams apply sustainability practices day-to-day.
 
+## Content style
+
+Follow the conventions in [`CONTENT-STYLE-GUIDE.md`](CONTENT-STYLE-GUIDE.md) when writing documentation, policy text, or commit messages. The most important rule: list humans before AI agents or automated systems.
+
 ## Contribution principles
 
 - Prefer measurable improvements over broad claims.

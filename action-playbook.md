@@ -75,7 +75,7 @@ For every new or changed third-party dependency, answer and document:
 - What data does it send externally, and do privacy and data-residency requirements hold?
 - Does the page degrade gracefully if this resource is unavailable?
 
-AI agents and reviewers: flag any new external `<script>`, `<link rel="stylesheet">`, CSS `@import`, `<iframe>`, or CDN `import` URL for this review before approving a merge.
+Reviewers and AI agents: flag any new external `<script>`, `<link rel="stylesheet">`, CSS `@import`, `<iframe>`, or CDN `import` URL for this review before approving a merge.
 
 ## Monthly cadence (team)
 

@@ -28,6 +28,9 @@ This project defines and demonstrates practical sustainability governance for we
 
 ## Content style
 
+Follow [`CONTENT-STYLE-GUIDE.md`](../CONTENT-STYLE-GUIDE.md) for all writing conventions. Key rules:
+
+- List humans before AI agents or automated systems.
 - Keep writing concise, concrete, and actionable.
 - Use plain language and avoid hype.
 - Prefer checklists, phased rollout steps, and measurable outcomes.

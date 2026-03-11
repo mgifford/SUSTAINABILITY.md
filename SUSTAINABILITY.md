@@ -70,7 +70,7 @@ Third-party services — CDNs, analytics tags, fonts, social embeds, maps, A/B t
 - **Provider alignment**: Does the vendor have a public sustainability or renewable energy commitment?
 - **Alternatives**: Are there lighter-weight alternatives (for example, a self-hosted font subset instead of a Google Fonts embed)?
 
-### For AI agents and automated code review
+### For code reviewers and AI agents
 
 Flag any of the following as requiring the above checklist before merge:
 
