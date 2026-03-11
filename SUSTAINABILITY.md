@@ -40,6 +40,7 @@ Applies to:
 - Do not use AI for trivial formatting or deterministic transformations.
 - Keep prompts small, scoped, and non-duplicative.
 - Disclose meaningful AI assistance in pull requests.
+- Do not activate browser built-in AI features automatically; require explicit user opt-in.
 
 ### 4) Shift processing in time and space
 - Shift deferrable jobs to lower-carbon time windows when possible.

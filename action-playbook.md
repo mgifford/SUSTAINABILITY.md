@@ -96,6 +96,7 @@ It is intentionally practical: short checklists, clear ownership, and measurable
 - No routine always-on AI generation in CI.
 - No large-context repetition for trivial formatting work.
 - No AI call when a local deterministic tool can produce the same result.
+- No automatic use of browser built-in AI features; always require explicit user opt-in.
 
 ### AI logging and accountability
 

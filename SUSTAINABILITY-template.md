@@ -143,6 +143,7 @@ Suggested workflow policy:
 - No always-on AI generation in CI for routine tasks
 - No large-context prompts for trivial formatting or deterministic transforms
 - No AI calls when local tooling can produce equivalent output
+- No automatic activation of browser built-in AI features; require explicit user opt-in
 
 ### AI controls
 
