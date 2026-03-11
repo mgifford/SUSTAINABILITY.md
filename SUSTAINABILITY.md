@@ -54,6 +54,35 @@ Consider the impact on the planet and all affected parties at every stage: from 
 
 Before proposing any change, ask: is this change needed at all? If yes, what is the simplest implementation that meets the requirement? Note expected sustainability impact (improves / neutral / regresses) in every PR description.
 
+## Third-party dependency assessment (WSG 4.10)
+
+Aligned with [WSG 4.10 – Give Third Parties the Same Priority as First Parties During Assessment](https://www.w3.org/TR/web-sustainability-guidelines/#give-third-parties-the-same-priority-as-first-parties-during-assessment).
+
+Third-party services — CDNs, analytics tags, fonts, social embeds, maps, A/B testing tools — are often responsible for a significant share of a page's data transfer, rendering blocking, and carbon footprint. Assess them with the same rigour as first-party code.
+
+### Checklist for any new or reviewed third-party dependency
+
+- **Necessity**: Can the requirement be met with first-party or self-hosted code? If not, document why.
+- **Transfer weight**: How many kilobytes does this add per page view, including all sub-resources it loads?
+- **Hosting**: Is the provider's data centre region, energy mix, or renewable credential published and acceptable?
+- **Privacy**: What data does it send to the third party, and are data-residency requirements met?
+- **Resilience**: Does the page degrade gracefully if the resource is unavailable or slow?
+- **Provider alignment**: Does the vendor have a public sustainability or renewable energy commitment?
+- **Alternatives**: Are there lighter-weight alternatives (for example, a self-hosted font subset instead of a Google Fonts embed)?
+
+### For AI agents and automated code review
+
+Flag any of the following as requiring the above checklist before merge:
+
+- A new `<script src="https://...">` or `<script type="module" src="https://...">` tag pointing to an external host.
+- A new `import ... from "https://..."` or CDN URL in a module specifier.
+- A new `@import url(...)` in CSS pointing to an external host.
+- A new `<link rel="stylesheet" href="https://...">` from an external host.
+- A new `<iframe src="https://...">` or embedded widget from a third-party service.
+- Any configuration that introduces a new third-party domain not previously in use.
+
+Block or flag the PR if the checklist has not been completed and documented.
+
 ## Core requirements
 
 ### 1) Sustainability as a release criterion
