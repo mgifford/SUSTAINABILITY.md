@@ -96,6 +96,13 @@ Block or flag the PR if the checklist has not been completed and documented.
 - Prefer static generation, caching, and progressive enhancement.
 - Honour `prefers-color-scheme` to reduce pixel-level energy use on OLED/AMOLED
   displays; see [Light/Dark Mode Accessibility Best Practices](examples/LIGHT_DARK_MODE_ACCESSIBILITY_BEST_PRACTICES.md).
+- Use sustainability-beneficial user preference media queries — `prefers-color-scheme`,
+  `prefers-reduced-motion`, `prefers-reduced-data`, `prefers-contrast`,
+  `prefers-reduced-transparency`, `monochrome`, `print`, and `scripting` — to customise
+  the interface to user needs and reduce unnecessary rendering, data transfer, and ink use.
+  Aligned with [WSG — Use Sustainability-Beneficial User Preference Media Queries](https://www.w3.org/TR/web-sustainability-guidelines/#use-sustainability-beneficial-user-preference-media-queries);
+  see [Sustainable User Preference Media Queries](examples/SUSTAINABLE_MEDIA_QUERIES.md)
+  for implementation patterns.
 - Consider the energy intensity of each technology layer: unstyled text < CSS < JavaScript < WebGL or 4K video (see [WSG energy intensity](https://www.w3.org/TR/web-sustainability-guidelines/#energy-intensity)). Prefer lighter layers where the richer format is not genuinely necessary.
 
 ### 3) Minimize AI usage by default
