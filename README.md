@@ -54,7 +54,7 @@ When a dependency, CDN, analytics service, social embed, or other external resou
 - **What is the fallback?** Does the page degrade gracefully if the third-party resource fails or is slow?
 - **Is the provider aligned?** Does the vendor have a published sustainability or renewable energy commitment?
 
-For AI agents and code review: flag any new `<script src="...">`, `import ... from "cdn..."`, stylesheet `@import` from an external host, or `<iframe>` embed as requiring the above checklist before merge.
+For code reviewers and AI agents: flag any new `<script src="...">`, `import ... from "cdn..."`, stylesheet `@import` from an external host, or `<iframe>` embed as requiring the above checklist before merge.
 
 ### 6) Browser support guarantees (device longevity)
 - Support baseline: latest major release plus previous 3 major releases for Chrome, Firefox, and Safari.
@@ -225,6 +225,7 @@ This section documents actual AI usage in this project, distinct from the [AI us
 
 - `README.md`: policy and implementation model.
 - `SUSTAINABILITY-template.md`: full reusable policy template for other teams.
+- `CONTENT-STYLE-GUIDE.md`: writing conventions for documentation contributors and AI agents.
 - `carbon.txt`: machine-readable sustainability data and disclosure information following the [carbon.txt standard](https://www.thegreenwebfoundation.org/tools/carbon-txt/).
 - `examples/SUSTAINABILITY_PROMPT_STARTER.html`: LLM prompt starter for drafting project-specific sustainability policy.
 - `action-playbook.md`: action-oriented checklist for teams and AI agents.
