@@ -128,9 +128,16 @@ Suggested workflow policy:
 
 ### Default behavior
 
-- Prefer deterministic tools first.
-- Use AI only when it materially reduces rework or delivery risk.
-- Keep prompts small and task-scoped.
+Apply this decision order before using AI for any task:
+
+1. **Deterministic code first**: Can a script, linter, or static rule handle this? Write or configure it.
+2. **Existing tooling**: Is there a CLI tool or library that already covers this? Use it.
+3. **Caching**: Can the result be precomputed and reused without re-running? Cache it.
+4. **Reduced frequency**: Can this run less often or only when relevant inputs change? Limit it.
+5. **Human action**: Is this infrequent enough that a person can handle it directly? Do it manually.
+6. **AI, only when justified**: Use AI only when the above are impractical and AI clearly reduces total lifecycle cost.
+
+Only run a process if its output will be consumed. Gate CI steps on relevant path filters rather than running unconditionally on every push.
 
 ### Allowed uses
 

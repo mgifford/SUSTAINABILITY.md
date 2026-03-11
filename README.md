@@ -56,6 +56,27 @@ Use this file like `SECURITY.md` or `AGENTS.md`: as an operational policy for hu
 - Use AI only when it clearly reduces total lifecycle impact (time, compute, and rework).
 - Treat every AI call as an energy and cost event that must be justified.
 
+### Code-first decision ladder
+
+Before reaching for AI, work through this sequence and stop at the first step that fits:
+
+1. **Deterministic code**: Can a script, rule, linter, or static transformation handle this reliably? Write or configure it.
+2. **Existing tooling**: Is there a CLI tool, library, or workflow step that already covers this accurately? Use it.
+3. **Caching or precomputation**: Can the result be computed once and reused without re-running? Cache it.
+4. **Reduced frequency**: Can this run less often, or only when a relevant file or condition changes? Limit it.
+5. **Human action**: Is this infrequent or one-off enough that a person can handle it directly? Do it manually.
+6. **AI — justified only**: Use AI only when all the above are impractical and AI demonstrably reduces total lifecycle cost.
+
+Each lower step increases reproducibility, reduces energy use, and shrinks the blast radius of failures.
+
+### Lazy execution: only run what will be used
+
+- Do not run a process unless its output will be consumed.
+- Gate CI steps on changed paths: run image checks only when images change, run link checks only when Markdown changes.
+- Avoid unconditional always-on checks that fire on every push regardless of what changed.
+- Cache expensive outputs and skip recomputation when inputs have not changed.
+- Skip or defer background jobs when a lightweight heuristic confirms no relevant change occurred.
+
 ### Allowed uses
 - Drafting and summarizing where equivalent deterministic automation does not exist.
 - One-time migration support or refactoring discovery.
