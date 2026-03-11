@@ -5,7 +5,7 @@ Org-name: SUSTAINABILITY.md Project
 Org-url: https://mgifford.github.io/sustainability.md/
 
 # Description
-Description: List if there are any policy templates for web sustainability governance. SUSTAINABILITY.md has none at this time.
+Description: Policy templates and implementation guides for web sustainability governance, including SUSTAINABILITY-template.md, action-playbook.md, WSG_REFERENCES.yaml, measuring-energy.md, and github-actions-sustainability.md.
 
 # Upstream
 Upstream: https://github.com/mgifford/sustainability.md
@@ -48,4 +48,4 @@ Contact: https://github.com/mgifford/sustainability.md/issues
 
 # Version
 Version: 1.0
-Last-updated: 2026-02-23
+Last-updated: 2026-03-11

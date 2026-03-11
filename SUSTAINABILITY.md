@@ -132,6 +132,17 @@ Additional requirements:
   - Gate non-urgent workflows using external carbon-intensity signals.
   - Use scheduled jobs with bounded delay windows to avoid delivery risk.
 
+### 6) Browser support and device longevity
+
+Aligned with [WSG 2.13](https://www.w3.org/TR/web-sustainability-guidelines/#ensure-your-solutions-are-accessible) and [WSG 3.14](https://www.w3.org/TR/web-sustainability-guidelines/#develop-a-mobile-first-layout).
+
+Supporting older browsers and devices directly reduces electronic waste and extends hardware life:
+
+- Support baseline: latest major release plus previous 3 major releases for Chrome, Firefox, and Safari.
+- Core journeys must remain usable on older supported browsers through progressive enhancement.
+- Avoid unnecessary polyfills or heavy bundles that increase transfer and runtime cost.
+- Treat this as a sustainability requirement: forced hardware or OS churn because a site drops support prematurely has a real environmental cost.
+
 ## Pull request checklist
 
 Each PR should include:
@@ -158,15 +169,19 @@ Document active sustainability debt here. Each entry needs an owner and a target
 
 | Issue | Status | Owner | Target date | Notes |
 | :--- | :--- | :--- | :--- | :--- |
-| [describe issue] | open | [owner] | [YYYY-MM-DD] | [mitigation plan] |
+| Green hosting status unknown — GitHub Pages CDN energy mix is not published | open | @mgifford | 2026-06-30 | Monitor GitHub/Azure sustainability disclosures; consider self-hosted alternative if data becomes material |
+| No formal carbon budget established for page weight or CI compute | open | @mgifford | 2026-06-30 | Run baseline measurement; set initial budget thresholds in CI |
+| AI call volume per PR is tracked informally | open | @mgifford | 2026-09-30 | Add structured AI usage field to PR template; review monthly |
+| Grid-aware serving not yet implemented | open | @mgifford | 2026-12-31 | Evaluate feasibility; document in github-actions-sustainability.md |
+| Living metrics table has no current measured baseline values | open | @mgifford | 2026-06-30 | Run Lighthouse on production; record and publish initial baselines |
 
 ## Metrics to track
 
-- Page weight on key templates
-- Request counts and third-party requests
-- CI minutes and heavy-job frequency
-- AI calls per PR (trend should decrease)
-- Deferrable jobs shifted to lower-carbon windows
+- Page weight on key templates (target: establish baseline via Lighthouse CI, then set a budget ≤ current measured value)
+- Request counts and third-party requests (target: minimize; justify each third-party request)
+- CI minutes and heavy-job frequency (target: downward trend; gate non-critical jobs on path filters)
+- AI calls per PR (target: downward trend; disclose in PR descriptions)
+- Deferrable jobs shifted to lower-carbon windows (target: track and increase over time)
 
 ## Trusted references
 
@@ -175,19 +190,25 @@ Document active sustainability debt here. Each entry needs an owner and a target
 - https://w3c.github.io/sustainableweb-wsg/guidelines.json
 - https://github.com/w3c/sustyweb
 - https://w3c.github.io/sustainableweb-wsg/resources.html
+- https://www.thegreenwebfoundation.org/
+- https://developers.thegreenwebfoundation.org/co2js/overview/
+- https://github.com/thegreenwebfoundation/co2.js/
+- https://gaw.greenweb.org/grid-intensity/
+- https://www.thegreenwebfoundation.org/news/a-new-api-for-grid-aware-websites-and-beyond/
 - https://www.nicchan.me/blog/exploring-grid-aware-websites/
 - https://app.electricitymaps.com/developer-hub/api/getting-started#geolocation
-- https://www.thegreenwebfoundation.org/news/ending-this-month-the-best-chance-in-years-to-fix-the-rules-for-green-energy/
+- https://www.thegreenwebfoundation.org/news/how-do-we-work-out-the-environmental-savings-from-accessibility/
 - https://rtl.chrisadams.me.uk/2026/01/how-i-think-of-decarbonising-the-energy-used-by-datacentres-on-the-grid/
 
 ## AI disclosure
 
-This section documents actual AI usage in this project, separate from the AI usage policy in core requirements above.
+This section documents actual AI usage in this project, separate from the AI usage policy in core requirements above. For full disclosure details, see [README.md – AI Disclosure](README.md#ai-disclosure).
 
 ### In building
 
 - Documentation, policy text, and templates were drafted and edited with AI assistance (GitHub Copilot / GPT-4-class models), with human review before publishing.
 - Code suggestions and CI workflow configuration used AI assistance with human oversight.
+- Policy review and improvement was assisted by AI with human editorial control.
 
 ### In execution
 
@@ -201,6 +222,7 @@ This section documents actual AI usage in this project, separate from the AI usa
 | :--- | :--- | :--- |
 | Code assistance and PR support | GitHub Copilot (OpenAI Codex / GPT-4-class) | During development |
 | Content drafting and policy editing | OpenAI GPT-4-class via Copilot Chat | During development |
+| Policy review and improvement | OpenAI GPT-4-class via Copilot Chat | During development |
 
 ## Agent instruction snippet
 
