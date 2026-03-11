@@ -34,7 +34,7 @@ Hosting-provider-url: https://pages.github.com/
 # This repository has been developed with AI-assisted drafting and
 # implementation support, with human review and editing
 AI-usage: disclosed
-AI-disclosure-url: https://github.com/mgifford/sustainability.md/blob/main/README.md
+AI-disclosure-url: https://github.com/mgifford/sustainability.md/blob/main/README.md#ai-disclosure
 
 # Carbon reduction strategies
 # - Minimal page weight and request counts

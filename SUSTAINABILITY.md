@@ -104,6 +104,28 @@ Document active sustainability debt here. Each entry needs an owner and a target
 - https://www.thegreenwebfoundation.org/news/ending-this-month-the-best-chance-in-years-to-fix-the-rules-for-green-energy/
 - https://rtl.chrisadams.me.uk/2026/01/how-i-think-of-decarbonising-the-energy-used-by-datacentres-on-the-grid/
 
+## AI disclosure
+
+This section documents actual AI usage in this project, separate from the AI usage policy in core requirements above.
+
+### In building
+
+- Documentation, policy text, and templates were drafted and edited with AI assistance (GitHub Copilot / GPT-4-class models), with human review before publishing.
+- Code suggestions and CI workflow configuration used AI assistance with human oversight.
+
+### In execution
+
+- No AI runs at runtime. The site is a static Jekyll build served via GitHub Pages.
+- No AI-powered browser features are activated automatically; any future AI features require explicit user opt-in.
+- CI workflows do not include always-on AI generation steps.
+
+### Models used
+
+| Purpose | Model / tool | When used |
+| :--- | :--- | :--- |
+| Code assistance and PR support | GitHub Copilot (OpenAI Codex / GPT-4-class) | During development |
+| Content drafting and policy editing | OpenAI GPT-4-class via Copilot Chat | During development |
+
 ## Agent instruction snippet
 
 Add to `AGENTS.md` or system prompts:

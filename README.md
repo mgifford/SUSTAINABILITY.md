@@ -147,6 +147,32 @@ Add this to `.cursorrules`, `AGENTS.md`, or your system prompt:
 
 ---
 
+## AI Disclosure
+
+This section documents actual AI usage in this project, distinct from the [AI usage policy](#ai-usage-policy-minimize-by-default) above.
+
+### In building
+
+- Content drafting, structural editing, and documentation were assisted by AI (GitHub Copilot / GPT-4-class models).
+- Code suggestions, refactoring, and CI workflow generation used AI assistance with human review and editing.
+- Policy templates and examples were co-drafted with AI and reviewed by human maintainers before publishing.
+
+### In execution
+
+- No AI runs automatically at runtime or page load. The site is a static Jekyll build served via GitHub Pages.
+- No AI-powered features are activated in the browser automatically; any future AI features must be explicitly opt-in by the user (per policy in the [AI usage policy](#ai-usage-policy-minimize-by-default) section).
+- GitHub Actions CI workflows do not include always-on AI generation steps.
+
+### Models used
+
+| Purpose | Model / tool | When used |
+| :--- | :--- | :--- |
+| Code assistance and PR support | GitHub Copilot (OpenAI Codex / GPT-4-class) | During development |
+| Content drafting and editing | OpenAI GPT-4-class via Copilot Chat | During development |
+| Policy review and improvement | OpenAI GPT-4-class via Copilot Chat | During development |
+
+---
+
 ## Repo contents
 
 - `README.md`: policy and implementation model.
