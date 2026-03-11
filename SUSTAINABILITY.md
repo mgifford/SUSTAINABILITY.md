@@ -13,6 +13,13 @@ Applies to:
 - Third-party dependencies
 - AI-assisted development and automation
 
+## Ownership
+
+- Sustainability lead: repository maintainer (@mgifford)
+- Engineering owner: repository maintainer
+- Design owner: community contributors
+- Review cadence: quarterly
+
 ## Core requirements
 
 ### 1) Sustainability as a release criterion
@@ -55,6 +62,26 @@ Each PR should include:
 - Page weight/request impact summary
 - Third-party impact summary
 - AI usage disclosure (if used)
+
+## Release gate criteria
+
+All of the following must pass before any release ships:
+
+- Page weight within budget
+- Request count within budget
+- No new third-party scripts without review
+- CI sustainability checks pass
+- AI usage disclosed if applicable
+
+Temporary exceptions require an open issue with owner, rationale, and expiry date.
+
+## Known limitations
+
+Document active sustainability debt here. Each entry needs an owner and a target fix date.
+
+| Issue | Status | Owner | Target date | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| [describe issue] | open | [owner] | [YYYY-MM-DD] | [mitigation plan] |
 
 ## Metrics to track
 

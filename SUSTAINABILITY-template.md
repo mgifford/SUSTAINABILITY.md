@@ -1,3 +1,40 @@
+---
+sustainability:
+  standard: WSG 1.0
+
+  applies_to:
+    - web_application
+    - design_system_components
+  excludes:
+    - legacy_modules
+    - third_party_integrations
+
+  ownership:
+    sustainability_lead: TBD
+    engineering_owner: TBD
+    design_owner: TBD
+
+  automated_tools:
+    - lighthouse
+    - co2.js
+    - bundlewatch
+  ci_pipeline: .github/workflows/ci.yml
+
+  budgets:
+    page_weight_budget_kb: 200
+    request_count: 50
+
+  release_gates:
+    - page weight within budget
+    - ci sustainability checks pass
+    - third-party scripts reviewed and justified
+    - no new critical sustainability regressions
+
+  known_limitations: docs/sustainability/exceptions.md
+
+  carbon_txt: carbon.txt
+---
+
 # SUSTAINABILITY.md
 
 > Template for teams that want a practical, measurable sustainability policy for engineering, accessibility, and AI usage.
@@ -5,7 +42,9 @@
 ## Status and ownership
 
 - Status: Draft | Active | Archived
-- Policy owner: [team or role]
+- Sustainability lead: [name or role]
+- Engineering owner: [name or role]
+- Design owner: [name or role]
 - Last updated: [YYYY-MM-DD]
 - Review cadence: [monthly/quarterly]
 
@@ -133,6 +172,30 @@ Suggested workflow policy:
   2. Define owner and expiry date
   3. Add mitigation plan
   4. Revalidate before expiry
+
+## Release gate criteria
+
+All of the following must pass before any release ships:
+
+- [ ] Page weight is within the agreed budget
+- [ ] Request count is within the agreed budget
+- [ ] No new third-party scripts introduced without review and justification
+- [ ] CI sustainability checks pass
+- [ ] Media assets are optimized (images, video, fonts)
+- [ ] AI usage disclosed if applicable
+- [ ] No new critical accessibility regressions (see [Accessibility as code](#accessibility-as-code-required-checks))
+
+Temporary exceptions require an open issue with owner, rationale, and expiry date.
+
+## Known limitations
+
+Document active sustainability debt here. Each entry needs an owner and a target fix date.
+
+| Issue | Status | Owner | Target date | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| [describe issue] | open | [owner] | [YYYY-MM-DD] | [mitigation plan] |
+
+Review this table at each governance checkpoint. Close resolved entries and escalate overdue ones.
 
 ## References
 
