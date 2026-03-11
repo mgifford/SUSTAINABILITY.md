@@ -1,0 +1,11 @@
+{
+  "extends": ["html-validate:recommended"],
+  "rules": {
+    "aria-label-misuse": "error",
+    "doctype-style": ["error", {"style": "lowercase"}],
+    "heading-level": "error",
+    "no-redundant-role": "error",
+    "void-style": ["error", {"style": "selfclosing"}],
+    "long-title": "off"
+  }
+}
