@@ -137,6 +137,11 @@ guidelines:
     description: "Designate someone responsible for driving and tracking sustainability efforts"
     url: "https://w3c.github.io/sustyweb/#WSG-4.3"
   
+  WSG-4.4:
+    name: "Structure Your Metadata for Machine Readability"
+    description: "Use JSON-LD, RDFa, Microdata, and sitemap.xml so search engines and AI agents can answer user questions without a full page load, reducing unnecessary requests and energy use"
+    url: "https://www.w3.org/TR/web-sustainability-guidelines/#structure-metadata-for-machine-readability"
+
   WSG-4.7:
     name: "Raise Awareness and Inform"
     description: "Educate team members and stakeholders about sustainability best practices"
