@@ -67,6 +67,7 @@ Before proposing any change, ask: is this change needed at all? If yes, what is 
 - Prefer static generation, caching, and progressive enhancement.
 - Honour `prefers-color-scheme` to reduce pixel-level energy use on OLED/AMOLED
   displays; see [Light/Dark Mode Accessibility Best Practices](examples/LIGHT_DARK_MODE_ACCESSIBILITY_BEST_PRACTICES.md).
+- Consider the energy intensity of each technology layer: unstyled text < CSS < JavaScript < WebGL or 4K video (see [WSG energy intensity](https://www.w3.org/TR/web-sustainability-guidelines/#energy-intensity)). Prefer lighter layers where the richer format is not genuinely necessary.
 
 ### 3) Minimize AI usage by default
 
