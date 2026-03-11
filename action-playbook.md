@@ -81,7 +81,19 @@ It is intentionally practical: short checklists, clear ownership, and measurable
 
 ### Default behavior
 
-- Prefer deterministic scripts and templates over model calls.
+Apply this decision order before using AI for any task:
+
+1. **Deterministic code first**: Can a script, linter, or static rule handle this? Write or configure it.
+2. **Existing tooling**: Is there a CLI tool or library that already covers this accurately? Use it.
+3. **Caching or precomputation**: Can the result be computed once and reused? Cache it.
+4. **Reduced frequency**: Can this run less often or only when relevant inputs change? Limit it.
+5. **Human action**: Is this infrequent enough that a person can do it directly? Do it manually.
+6. **AI, only when justified**: Use AI only when the above are impractical and AI demonstrably reduces total lifecycle cost.
+
+Additional defaults:
+
+- Only run a process if its output will be consumed (lazy execution).
+- Gate CI steps on changed paths; do not run checks unconditionally on every push.
 - Use the smallest suitable model and shortest useful context.
 - Reuse cached outputs and avoid duplicate prompts.
 

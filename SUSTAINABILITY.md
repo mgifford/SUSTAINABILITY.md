@@ -35,8 +35,20 @@ Applies to:
   displays; see [Light/Dark Mode Accessibility Best Practices](examples/LIGHT_DARK_MODE_ACCESSIBILITY_BEST_PRACTICES.md).
 
 ### 3) Minimize AI usage by default
-- Prefer deterministic/local tools first.
-- Use AI only when it clearly reduces total lifecycle effort, rework, or risk.
+
+Apply this decision order before reaching for AI:
+
+1. **Deterministic code first**: Can a script, linter, or static rule handle this? Write or configure it.
+2. **Existing tooling**: Is there a CLI tool or library that already covers this accurately? Use it.
+3. **Caching**: Can the result be precomputed and reused without re-running? Cache it.
+4. **Reduced frequency**: Can this run less often or only when relevant inputs change? Limit it.
+5. **Human action**: Is this infrequent enough that a person can handle it directly? Do it manually.
+6. **AI, only when justified**: Use AI only if all the above are impractical and AI clearly reduces total lifecycle cost.
+
+Additional requirements:
+
+- Do not run a process unless its output will be consumed.
+- Gate CI steps on relevant path filters to avoid unconditional always-on execution.
 - Do not use AI for trivial formatting or deterministic transformations.
 - Keep prompts small, scoped, and non-duplicative.
 - Disclose meaningful AI assistance in pull requests.
