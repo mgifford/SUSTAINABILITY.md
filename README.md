@@ -77,6 +77,18 @@ Each lower step increases reproducibility, reduces energy use, and shrinks the b
 - Cache expensive outputs and skip recomputation when inputs have not changed.
 - Skip or defer background jobs when a lightweight heuristic confirms no relevant change occurred.
 
+### Component energy intensity
+
+Not all web components carry the same computational cost. Per [WSG energy intensity](https://www.w3.org/TR/web-sustainability-guidelines/#energy-intensity), the relative cost increases across technology layers:
+
+1. **Unstyled text**: minimal render cost.
+2. **Styled text / CSS**: moderate layout and paint cost.
+3. **JavaScript**: runtime CPU cost for parsing, compiling, and execution.
+4. **WebGL / 4K video**: high GPU, memory, and decode cost.
+
+When choosing or generating code, prefer the lightest technology that delivers the required outcome. For example: use a CSS transform instead of a JavaScript animation, a static image instead of video, a styled element instead of a canvas or WebGL effect.
+Apply this principle to AI-generated code: do not reach for a heavier technology layer unless a lighter one cannot meet the need.
+
 ### Allowed uses
 - Drafting and summarizing where equivalent deterministic automation does not exist.
 - One-time migration support or refactoring discovery.

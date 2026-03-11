@@ -308,3 +308,8 @@ implementation_resources:
     name: "Grid-aware API announcement"
     description: "Background on the new API for building grid-aware websites and applications"
     url: "https://www.thegreenwebfoundation.org/news/a-new-api-for-grid-aware-websites-and-beyond/"
+
+  energy_intensity:
+    name: "WSG Energy Intensity"
+    description: "Differential render and runtime cost by layer: text < CSS < JavaScript < WebGL / 4K video. Prefer lighter layers when heavier ones are not needed."
+    url: "https://www.w3.org/TR/web-sustainability-guidelines/#energy-intensity"

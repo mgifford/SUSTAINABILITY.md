@@ -54,6 +54,7 @@ Apply [WSG 2.8](https://www.w3.org/TR/web-sustainability-guidelines/#integrate-s
 - Remove unused scripts, CSS, fonts, and images before adding new assets.
 - Use efficient media formats and right-sized images.
 - Keep third-party dependencies to a justified minimum.
+- Choose the lightest technology layer that meets the requirement. Per [WSG energy intensity](https://www.w3.org/TR/web-sustainability-guidelines/#energy-intensity), computational cost increases from unstyled text → CSS → JavaScript → WebGL / 4K video. Avoid heavier layers when a lighter one is sufficient.
 
 ### 3) Review with a sustainability gate
 
