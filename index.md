@@ -53,6 +53,9 @@ reference_cards:
   - title: GitHub Actions Guide
     label: API capabilities for carbon-aware computing
     url: ./github-actions-sustainability/
+  - title: Measuring Energy
+    label: Tools and techniques for web energy measurement
+    url: ./measuring-energy/
   - title: WSG Mapping
     label: WSG_REFERENCES.yaml
     url: ./WSG_REFERENCES.yaml
