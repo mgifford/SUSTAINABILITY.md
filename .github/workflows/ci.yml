@@ -69,6 +69,23 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  html-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install html-validate
+        run: npm install --save-dev html-validate
+
+      - name: Validate HTML
+        run: npx html-validate "examples/**/*.html"
+
   workflow-lint:
     runs-on: ubuntu-latest
     steps:

@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Semantic HTML Demo · SUSTAINABILITY.md</title>
+    <meta
+      name="description"
+      content="Working demonstration of semantic HTML patterns aligned with WSG 3.7 (Use HTML Elements Correctly) and the W3C Web Sustainability Guidelines."
+    />
+    <link rel="stylesheet" href="/sustainability.md/assets/css/site.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <!--
+        This page is intentionally written with correct semantic HTML so that
+        html-validate and HTMLHint pass cleanly. It serves as:
+          1. A living reference for the patterns documented in SEMANTIC_HTML_LINTING.md
+          2. A CI smoke-test that the html-validate configuration is effective
+
+        WSG reference: https://www.w3.org/TR/web-sustainability-guidelines/#ensure-code-follows-good-semantic-practices
+      -->
+
+      <!-- ✅ <header> carries an implicit banner role — no role attribute needed -->
+      <header>
+        <a href="/sustainability.md/">SUSTAINABILITY.md</a>
+      </header>
+
+      <!-- ✅ <nav> carries an implicit navigation role — aria-label disambiguates multiple navs -->
+      <nav aria-label="Main">
+        <ul>
+          <li><a href="/sustainability.md/README.md">README</a></li>
+          <li><a href="/sustainability.md/action-playbook.md">Action Playbook</a></li>
+          <li><a href="/sustainability.md/resources.md">Resources</a></li>
+        </ul>
+      </nav>
+
+      <!-- ✅ <main> carries an implicit main role -->
+      <main id="main-content">
+        <article>
+          <h1>Semantic HTML Patterns: Working Demo</h1>
+
+          <p>
+            This page demonstrates semantic HTML as required by
+            <a
+              href="https://www.w3.org/TR/web-sustainability-guidelines/#ensure-code-follows-good-semantic-practices"
+            >WSG 3.7</a
+            >.
+            It is validated automatically by html-validate in CI.
+          </p>
+
+          <!-- ✅ Heading levels are sequential — no skipped ranks -->
+          <h2>1. Landmark regions</h2>
+          <p>
+            Native sectioning elements (<code>&lt;header&gt;</code>,
+            <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>,
+            <code>&lt;aside&gt;</code>, <code>&lt;footer&gt;</code>) provide
+            landmark roles without extra ARIA attributes.
+          </p>
+
+          <h2>2. Interactive controls</h2>
+          <p>
+            Use <code>&lt;button&gt;</code> for actions and
+            <code>&lt;a&gt;</code> for navigation. Never use
+            <code>&lt;div onclick&gt;</code> as an interactive control.
+          </p>
+
+          <!-- ✅ Native button — keyboard accessible, focusable, activatable by default -->
+          <p>
+            <button type="button">Example action button</button>
+          </p>
+
+          <h2>3. Form labels and inputs</h2>
+          <p>
+            Every input must have an explicit <code>&lt;label&gt;</code> linked
+            via the <code>for</code>/<code>id</code> pair. Do not rely on
+            placeholder text as a label.
+          </p>
+
+          <!-- ✅ Explicit label association — works with all assistive technologies -->
+          <form action="#" method="post">
+            <div>
+              <label for="demo-name">Full name</label>
+              <input
+                type="text"
+                id="demo-name"
+                name="name"
+                autocomplete="name"
+                required
+              />
+            </div>
+            <div>
+              <label for="demo-email">Email address</label>
+              <input
+                type="email"
+                id="demo-email"
+                name="email"
+                autocomplete="email"
+                required
+              />
+            </div>
+            <div>
+              <label for="demo-topic">Topic</label>
+              <select id="demo-topic" name="topic">
+                <option value="">Select a topic</option>
+                <option value="performance">Performance</option>
+                <option value="carbon">Carbon</option>
+                <option value="accessibility">Accessibility</option>
+              </select>
+            </div>
+            <div>
+              <label for="demo-message">Message</label>
+              <textarea
+                id="demo-message"
+                name="message"
+                rows="4"
+              ></textarea>
+            </div>
+            <button type="submit">Send message</button>
+          </form>
+
+          <h2>4. Images</h2>
+          <p>
+            Informative images need descriptive <code>alt</code> text.
+            Decorative images use <code>alt=""</code>.
+          </p>
+
+          <!-- ✅ Informative image with descriptive alt -->
+          <img
+            src="/sustainability.md/assets/images/placeholder.svg"
+            alt="Bar chart showing page weight reduction over four quarters"
+            width="400"
+            height="200"
+          />
+
+          <h2>5. Lists and tabular data</h2>
+          <p>Use lists for enumerable items, tables for relational data.</p>
+
+          <!-- ✅ Ordered list for sequential steps -->
+          <ol>
+            <li>Install html-validate: <code>npm install --save-dev html-validate</code></li>
+            <li>Add <code>.htmlvalidate.json</code> to the project root</li>
+            <li>Run <code>npx html-validate "**/*.html"</code></li>
+            <li>Add the CI job to enforce rules on every pull request</li>
+          </ol>
+
+          <!-- ✅ Table with caption, thead, tbody — no layout tables -->
+          <table>
+            <caption>
+              Tool comparison: html-validate vs HTMLHint vs Nu Checker
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Tool</th>
+                <th scope="col">Focus</th>
+                <th scope="col">Network required</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>html-validate</td>
+                <td>Semantic correctness, ARIA misuse</td>
+                <td>No</td>
+              </tr>
+              <tr>
+                <td>HTMLHint</td>
+                <td>Authoring errors, alt text, IDs</td>
+                <td>No</td>
+              </tr>
+              <tr>
+                <td>Nu Checker (vnu)</td>
+                <td>Full HTML5 spec conformance</td>
+                <td>Optional (Docker/jar)</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- ✅ <aside> for supplementary content -->
+          <aside>
+            <h2>Further reading</h2>
+            <ul>
+              <li>
+                <a
+                  href="https://www.w3.org/TR/web-sustainability-guidelines/#ensure-code-follows-good-semantic-practices"
+                >WSG — Ensure Your Code Follows Good Semantic Practices</a
+                >
+              </li>
+              <li>
+                <a href="https://html-validate.org/rules/">html-validate rules reference</a>
+              </li>
+              <li>
+                <a href="https://validator.w3.org/nu/">W3C Nu HTML Checker</a>
+              </li>
+            </ul>
+          </aside>
+        </article>
+      </main>
+
+      <!-- ✅ <footer> carries an implicit contentinfo role -->
+      <footer class="site-footer">
+        <p>
+          <strong>SUSTAINABILITY.md</strong> is an open policy format for
+          digital sustainability transparency and governance.
+        </p>
+        <p>
+          <a href="/sustainability.md/README.md">README</a>
+          ·
+          <a href="/sustainability.md/CONTRIBUTING.md">Contributing</a>
+          ·
+          <a href="https://github.com/mgifford/sustainability.md">GitHub Repo</a>
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
