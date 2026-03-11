@@ -142,6 +142,11 @@ guidelines:
     description: "Educate team members and stakeholders about sustainability best practices"
     url: "https://w3c.github.io/sustyweb/#WSG-4.7"
   
+  WSG-4.10:
+    name: "Give Third Parties the Same Priority as First Parties During Assessment"
+    description: "Apply the same sustainability scrutiny to third-party services and CDNs as to first-party code"
+    url: "https://www.w3.org/TR/web-sustainability-guidelines/#give-third-parties-the-same-priority-as-first-parties-during-assessment"
+
   WSG-4.12:
     name: "Support Sustainability in Third-Party Services"
     description: "Choose partners and vendors aligned with environmental goals"

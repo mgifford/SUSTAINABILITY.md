@@ -63,6 +63,20 @@ Apply [WSG 2.8](https://www.w3.org/TR/web-sustainability-guidelines/#integrate-s
 - Block merges when thresholds regress beyond agreed limits.
 - Review Lighthouse trendlines each month and ratchet thresholds upward.
 
+### 4) Assess third-party dependencies (WSG 4.10)
+
+Apply [WSG 4.10](https://www.w3.org/TR/web-sustainability-guidelines/#give-third-parties-the-same-priority-as-first-parties-during-assessment): treat any external CDN, analytics tag, font loader, social embed, or widget with the same scrutiny as first-party code.
+
+For every new or changed third-party dependency, answer and document:
+
+- Is this necessary, or can a first-party or self-hosted alternative meet the need?
+- What is the additional transfer weight (kilobytes per page view, including sub-resources)?
+- Does the provider publish a credible sustainability or renewable energy commitment?
+- What data does it send externally, and do privacy and data-residency requirements hold?
+- Does the page degrade gracefully if this resource is unavailable?
+
+AI agents and reviewers: flag any new external `<script>`, `<link rel="stylesheet">`, CSS `@import`, `<iframe>`, or CDN `import` URL for this review before approving a merge.
+
 ## Monthly cadence (team)
 
 ### 1) Baseline and trend review

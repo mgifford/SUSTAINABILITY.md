@@ -41,7 +41,22 @@ Use this file like `SECURITY.md` or `AGENTS.md`: as an operational policy for hu
 - Enforce media optimization (images, video, fonts) and cache policy.
 - Track changes over time; optimize regressions first, then net-new features.
 
-### 4) Browser support guarantees (device longevity)
+### 5) Third-party assessment (WSG 4.10)
+
+Apply the same sustainability scrutiny to third-party services and CDNs as to first-party code ([WSG 4.10](https://www.w3.org/TR/web-sustainability-guidelines/#give-third-parties-the-same-priority-as-first-parties-during-assessment)).
+
+When a dependency, CDN, analytics service, social embed, or other external resource is added or reviewed, require explicit answers to:
+
+- **Is it necessary?** Can the need be met with first-party or self-hosted code?
+- **What is the transfer weight?** How many additional kilobytes does it add per page view?
+- **Where does it run?** Is the host region, energy mix, or renewable credential known and acceptable?
+- **What data does it send?** Are privacy and data-residency implications acceptable?
+- **What is the fallback?** Does the page degrade gracefully if the third-party resource fails or is slow?
+- **Is the provider aligned?** Does the vendor have a published sustainability or renewable energy commitment?
+
+For AI agents and code review: flag any new `<script src="...">`, `import ... from "cdn..."`, stylesheet `@import` from an external host, or `<iframe>` embed as requiring the above checklist before merge.
+
+### 6) Browser support guarantees (device longevity)
 - Support baseline: latest major release plus previous 3 major releases for Chrome, Firefox, and Safari.
 - Treat this as a sustainability requirement to reduce forced hardware/OS churn and extend device life.
 - Core journeys must remain usable on older supported browsers through progressive enhancement.
