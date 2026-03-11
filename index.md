@@ -56,6 +56,9 @@ reference_cards:
   - title: Measuring Energy
     label: Tools and techniques for web energy measurement
     url: ./measuring-energy/
+  - title: Reporting Metrics
+    label: Footer disclosures and CARBON.txt
+    url: ./reporting-sustainability-metrics/
   - title: WSG Mapping
     label: WSG_REFERENCES.yaml
     url: ./WSG_REFERENCES.yaml
