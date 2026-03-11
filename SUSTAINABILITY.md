@@ -39,6 +39,10 @@ Consider the impact on the planet and all affected parties at every stage: from 
 - Does the design minimize unnecessary assets (images, fonts, scripts, animations)?
 - Can the default experience be lightweight, with richer content as an explicit opt-in?
 - Does the interaction model help users succeed quickly, reducing wasted page loads?
+- Does the design avoid dark patterns, manipulative copy, and unnecessary interruptions?
+  See [Sustainable UX Design Patterns](examples/SUSTAINABLE_UX_DESIGN_PATTERNS.md) for
+  detailed guidance on minimizing non-essential content, navigation and wayfinding, assisting
+  without distracting, and avoiding deceptive design.
 
 ### Questions to ask before merging
 
