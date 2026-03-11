@@ -24,6 +24,8 @@ Applies to:
 - Optimize images, video, fonts, and scripts.
 - Remove unnecessary JavaScript and third-party tags.
 - Prefer static generation, caching, and progressive enhancement.
+- Honour `prefers-color-scheme` to reduce pixel-level energy use on OLED/AMOLED
+  displays; see [Light/Dark Mode Accessibility Best Practices](examples/LIGHT_DARK_MODE_ACCESSIBILITY_BEST_PRACTICES.md).
 
 ### 3) Minimize AI usage by default
 - Prefer deterministic/local tools first.
