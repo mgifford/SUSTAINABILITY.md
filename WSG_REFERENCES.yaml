@@ -51,6 +51,26 @@ guidelines:
     name: "Ensure Navigation and Way-finding Is Clear"
     description: "Help users find what they need quickly to reduce wasted page loads"
     url: "https://w3c.github.io/sustyweb/#WSG-2.12"
+
+  WSG-2.16:
+    name: "Minimize Non-Essential Content, Interactivity, or Journeys"
+    description: "Remove non-essential content, limit interactivity to what users need, and shorten task flows to reduce digital waste"
+    url: "https://www.w3.org/TR/web-sustainability-guidelines/#minimize-non-essential-content-interactivity-or-journeys"
+
+  WSG-2.17:
+    name: "Ensure That Navigation and Wayfinding Are Well-Structured"
+    description: "Provide clear, consistent navigation so users reach their goal in fewer steps, reducing wasted page loads"
+    url: "https://www.w3.org/TR/web-sustainability-guidelines/#ensure-that-navigation-and-wayfinding-are-well-structured"
+
+  WSG-2.18:
+    name: "Design to Assist and Not to Distract"
+    description: "Eliminate UI patterns that draw attention away from users' goals, including unsolicited animations, modals, and notifications"
+    url: "https://www.w3.org/TR/web-sustainability-guidelines/#design-to-assist-and-not-to-distract"
+
+  WSG-2.19:
+    name: "Avoid Being Manipulative or Deceptive"
+    description: "Remove dark patterns such as confirm-shaming, hidden costs, false urgency, and pre-checked consent boxes"
+    url: "https://www.w3.org/TR/web-sustainability-guidelines/#avoid-being-manipulative-or-deceptive"
   
   WSG-2.13:
     name: "Ensure Your Solutions Are Accessible"
