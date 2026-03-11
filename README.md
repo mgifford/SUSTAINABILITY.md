@@ -155,13 +155,26 @@ Apply this principle to AI-generated code: do not reach for a heavier technology
 
 ## Living metrics
 
+How to establish baselines: run Lighthouse CI against the production URL, record output, and set initial budget thresholds at or below the measured baseline. Re-measure after each significant change.
+
 | Metric | Target | Current | Owner |
 | :--- | :--- | :--- | :--- |
-| Page weight (core templates) | <= defined budget | Track in CI | Web team |
-| Third-party requests | Minimize + justify | Track in CI | Platform |
-| AI calls per PR | Downward trend | Track in logs | Engineering |
-| Deferrable jobs shifted | Increase over time | Monthly report | DevOps |
-| Carbon-intensity-aware runs | Increase over time | Monthly report | DevOps |
+| Page weight (core templates) | <= measured baseline | Not yet established — run Lighthouse to set initial baseline | Web team |
+| Third-party requests | 0 unjustified; justify all | Audit via DevTools Network panel | Platform |
+| AI calls per PR | Downward trend | Log in PR descriptions; review monthly | Engineering |
+| Deferrable jobs shifted | Increase over time | Track in CI logs; report monthly | DevOps |
+| Carbon-intensity-aware runs | Increase over time | Track in CI logs; report monthly | DevOps |
+
+## Known limitations
+
+Active sustainability debt for this project. Each entry has an owner and a target date.
+
+| Issue | Status | Owner | Target date | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| Green hosting status unknown — GitHub Pages CDN energy mix not published | open | @mgifford | 2026-06-30 | Monitor GitHub/Azure sustainability disclosures |
+| No formal carbon budget established for page weight or CI compute | open | @mgifford | 2026-06-30 | Run baseline Lighthouse measurement; set initial CI budget thresholds |
+| AI call volume per PR tracked informally | open | @mgifford | 2026-09-30 | Add structured field to PR template; review monthly |
+| Grid-aware serving not implemented | open | @mgifford | 2026-12-31 | Evaluate feasibility; document constraints in github-actions-sustainability.md |
 
 ---
 

@@ -152,6 +152,16 @@ guidelines:
     description: "Choose partners and vendors aligned with environmental goals"
     url: "https://w3c.github.io/sustyweb/#WSG-4.12"
 
+  WSG-4.15:
+    name: "Set Goals Based on Performance and Energy Impact"
+    description: "Define and track measurable targets for energy use across server, transmission, execution, storage, and engagement layers"
+    url: "https://www.w3.org/TR/web-sustainability-guidelines/#set-goals-based-on-performance-and-energy-impact"
+
+  WSG-4.16:
+    name: "Extend Device Life Through Broad Browser Compatibility"
+    description: "Extend device life through broad browser support and progressive enhancement, reducing the need for hardware upgrades"
+    url: "https://w3c.github.io/sustyweb/#WSG-4.16"
+
 techniques:
   STAR-HIS02-1:
     name: "Identify Sustainability Improvements"
