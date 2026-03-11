@@ -65,6 +65,7 @@ Use this file like `SECURITY.md` or `AGENTS.md`: as an operational policy for hu
 - No always-on AI generation in CI for routine checks.
 - No repeated large-context prompts when smaller scoped prompts or local tooling suffice.
 - No AI use for trivial formatting, boilerplate, or deterministic transformations.
+- Do not activate browser built-in AI features automatically; they must always be opt-in by the user.
 
 ### AI controls
 - Set prompt-size and request-rate limits.
