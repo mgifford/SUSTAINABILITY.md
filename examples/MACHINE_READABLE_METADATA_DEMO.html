@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Machine-Readable Metadata Demo · SUSTAINABILITY.md</title>
+    <meta
+      name="description"
+      content="Working demonstration of machine-readable metadata patterns (JSON-LD, RDFa, Microdata, sitemap) aligned with WSG 4.4 (Structure Metadata for Machine Readability)."
+    />
+
+    <!-- ✅ Canonical URL — prevents duplicate content indexing -->
+    <link
+      rel="canonical"
+      href="https://mgifford.github.io/sustainability.md/examples/MACHINE_READABLE_METADATA_DEMO.html"
+    />
+
+    <!-- ✅ Open Graph — social platforms and AI link previews -->
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Machine-Readable Metadata Demo · SUSTAINABILITY.md" />
+    <meta
+      property="og:description"
+      content="Working demonstration of machine-readable metadata patterns aligned with WSG 4.4."
+    />
+    <meta
+      property="og:url"
+      content="https://mgifford.github.io/sustainability.md/examples/MACHINE_READABLE_METADATA_DEMO.html"
+    />
+
+    <!-- ✅ JSON-LD structured data block — preferred format for search and AI crawlers.
+         Completely decoupled from visible markup, easy to read and test in isolation. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Machine-Readable Metadata Demo",
+        "description": "Working demonstration of machine-readable metadata patterns aligned with WSG 4.4 (Structure Metadata for Machine Readability).",
+        "url": "https://mgifford.github.io/sustainability.md/examples/MACHINE_READABLE_METADATA_DEMO.html",
+        "dateModified": "2026-03-11",
+        "author": {
+          "@type": "Organization",
+          "name": "SUSTAINABILITY.md Project",
+          "url": "https://mgifford.github.io/sustainability.md/"
+        },
+        "about": {
+          "@type": "Thing",
+          "name": "Web Sustainability Guidelines WSG 4.4",
+          "url": "https://www.w3.org/TR/web-sustainability-guidelines/#structure-metadata-for-machine-readability"
+        },
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "SUSTAINABILITY.md",
+          "url": "https://mgifford.github.io/sustainability.md/"
+        }
+      }
+    </script>
+
+    <!-- ✅ FAQ JSON-LD — enables rich results and direct AI answers without a page visit -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Why does machine-readable metadata reduce energy use?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Structured metadata lets search engines and AI assistants answer user questions directly from the metadata, without loading the full page. A JSON-LD block is typically under 5 KB, compared with 100–3,000 KB for a rendered page. Fewer full page loads means less bandwidth, less server compute, and less client-side energy."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which structured data format should I use?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Start with JSON-LD. It is decoupled from visible markup, easy to test as standalone JSON, and supported by all major search engines. Add sitemap.xml generation early — it is nearly free with static site generators and tells crawlers which pages to skip when content has not changed."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the difference between RDFa and Microdata?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Both annotate visible HTML content with Schema.org vocabulary. RDFa uses vocab, typeof, and property attributes; Microdata uses itemscope, itemtype, and itemprop. Both are supported by major search engines, but JSON-LD is generally preferred for new implementations because it is easier to maintain."
+            }
+          }
+        ]
+      }
+    </script>
+
+    <!-- ✅ BreadcrumbList JSON-LD — helps search engines show navigation paths in results -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "SUSTAINABILITY.md",
+            "item": "https://mgifford.github.io/sustainability.md/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Examples",
+            "item": "https://mgifford.github.io/sustainability.md/examples/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Machine-Readable Metadata Demo",
+            "item": "https://mgifford.github.io/sustainability.md/examples/MACHINE_READABLE_METADATA_DEMO.html"
+          }
+        ]
+      }
+    </script>
+
+    <link rel="stylesheet" href="/sustainability.md/assets/css/site.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <!--
+        This page demonstrates machine-readable metadata patterns aligned with
+        WSG 4.4 — Structure Your Metadata for Machine Readability.
+        https://www.w3.org/TR/web-sustainability-guidelines/#structure-metadata-for-machine-readability
+
+        It serves as:
+          1. A living reference for the patterns documented in MACHINE_READABLE_METADATA.md
+          2. A CI smoke-test that HTML and JSON-LD are well-formed
+          3. An example of combining JSON-LD, RDFa, and essential <meta> tags on one page
+
+        Sustainability note: The three JSON-LD blocks in <head> are the primary way search
+        engines and AI crawlers extract information from this page. A crawler can satisfy
+        most queries from those blocks alone — no JavaScript execution required.
+      -->
+
+      <header>
+        <a href="/sustainability.md/">SUSTAINABILITY.md</a>
+      </header>
+
+      <nav aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/sustainability.md/">Home</a></li>
+          <li><a href="/sustainability.md/examples/">Examples</a></li>
+          <li aria-current="page">Machine-Readable Metadata Demo</li>
+        </ol>
+      </nav>
+
+      <main id="main-content">
+        <!-- ✅ RDFa annotation on the article element — metadata travels with the content -->
+        <article vocab="https://schema.org/" typeof="TechArticle">
+          <h1 property="headline">Machine-Readable Metadata: Working Demo</h1>
+
+          <p property="description">
+            This page demonstrates machine-readable metadata patterns as required by
+            <a
+              href="https://www.w3.org/TR/web-sustainability-guidelines/#structure-metadata-for-machine-readability"
+            >WSG 4.4</a>
+            — Structure Your Metadata for Machine Readability.
+            It combines JSON-LD (in <code>&lt;head&gt;</code>), RDFa (on this
+            <code>&lt;article&gt;</code> element), and essential <code>&lt;meta&gt;</code>
+            tags to show how each approach works.
+          </p>
+
+          <p>
+            Last modified:
+            <time property="dateModified" datetime="2026-03-11">11 March 2026</time>.
+          </p>
+
+          <!-- ✅ Heading levels are sequential — no skipped ranks -->
+          <h2>1. What this page demonstrates</h2>
+
+          <ul>
+            <li>
+              <strong>JSON-LD blocks in <code>&lt;head&gt;</code></strong> — three blocks
+              covering the article, a FAQ, and breadcrumbs. These are the primary structured
+              data signals for search engines and AI crawlers.
+            </li>
+            <li>
+              <strong>RDFa attributes on the <code>&lt;article&gt;</code> element</strong> —
+              shows how visible content can carry metadata inline using
+              <code>vocab</code>, <code>typeof</code>, and <code>property</code>.
+            </li>
+            <li>
+              <strong>Microdata on an example content block</strong> — shows the
+              <code>itemscope</code>, <code>itemtype</code>, and <code>itemprop</code>
+              pattern for completeness.
+            </li>
+            <li>
+              <strong>Canonical URL and Open Graph tags</strong> — in <code>&lt;head&gt;</code>,
+              used by social platforms and link-preview scrapers.
+            </li>
+          </ul>
+
+          <h2>2. Microdata example</h2>
+
+          <p>
+            The block below demonstrates Microdata annotation. The same content is also
+            described by the JSON-LD block in <code>&lt;head&gt;</code>. In a production
+            page, pick one format — JSON-LD is recommended for new implementations.
+          </p>
+
+          <!-- ✅ Microdata example — itemscope/itemtype on the containing element -->
+          <div itemscope="" itemtype="https://schema.org/SoftwareSourceCode">
+            <p>
+              Project:
+              <a itemprop="name" href="https://github.com/mgifford/sustainability.md">
+                SUSTAINABILITY.md
+              </a>
+            </p>
+            <p>
+              License:
+              <span itemprop="license">MIT</span>
+            </p>
+            <p>
+              Programming language:
+              <span itemprop="programmingLanguage">Markdown, YAML, HTML</span>
+            </p>
+            <p>
+              Repository:
+              <a
+                itemprop="codeRepository"
+                href="https://github.com/mgifford/sustainability.md"
+              >
+                github.com/mgifford/sustainability.md
+              </a>
+            </p>
+          </div>
+
+          <h2>3. Sitemap.xml pattern</h2>
+
+          <p>
+            A <code>sitemap.xml</code> file lists URLs and when they were last modified.
+            Crawlers use <code>&lt;lastmod&gt;</code> to skip pages that have not changed,
+            reducing unnecessary server requests.
+          </p>
+
+          <pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;urlset xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;&gt;
+  &lt;url&gt;
+    &lt;loc&gt;https://example.org/&lt;/loc&gt;
+    &lt;lastmod&gt;2026-03-11&lt;/lastmod&gt;
+    &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+    &lt;priority&gt;1.0&lt;/priority&gt;
+  &lt;/url&gt;
+&lt;/urlset&gt;</code></pre>
+
+          <p>
+            Declare the sitemap URL in <code>robots.txt</code>:
+          </p>
+
+          <pre><code>Sitemap: https://example.org/sitemap.xml</code></pre>
+
+          <h2>4. FAQ section (structured for rich results)</h2>
+
+          <p>
+            The questions below are also described by the
+            <code>FAQPage</code> JSON-LD block in <code>&lt;head&gt;</code>. This enables
+            search engines to show answers directly in results, and AI assistants to
+            answer without loading the page.
+          </p>
+
+          <dl>
+            <dt>Why does machine-readable metadata reduce energy use?</dt>
+            <dd>
+              Structured metadata lets search engines and AI assistants answer user questions
+              directly from the metadata, without loading the full page. A JSON-LD block is
+              typically under 5 KB, compared with 100–3,000 KB for a rendered page.
+              Fewer full page loads means less bandwidth, less server compute, and less
+              client-side energy.
+            </dd>
+
+            <dt>Which structured data format should I use?</dt>
+            <dd>
+              Start with JSON-LD. It is decoupled from visible markup, easy to test as
+              standalone JSON, and supported by all major search engines. Add
+              <code>sitemap.xml</code> generation early — it is nearly free with static site
+              generators and tells crawlers which pages to skip when content has not changed.
+            </dd>
+
+            <dt>What is the difference between RDFa and Microdata?</dt>
+            <dd>
+              Both annotate visible HTML content with Schema.org vocabulary.
+              RDFa uses <code>vocab</code>, <code>typeof</code>, and <code>property</code>
+              attributes; Microdata uses <code>itemscope</code>, <code>itemtype</code>, and
+              <code>itemprop</code>. Both are supported by major search engines, but JSON-LD
+              is generally preferred for new implementations because it is easier to maintain.
+            </dd>
+          </dl>
+
+          <aside>
+            <h2>Related resources</h2>
+            <ul>
+              <li>
+                <a
+                  href="https://www.w3.org/TR/web-sustainability-guidelines/#structure-metadata-for-machine-readability"
+                >WSG 4.4 — Structure Your Metadata for Machine Readability</a>
+              </li>
+              <li>
+                <a href="MACHINE_READABLE_METADATA.md">
+                  MACHINE_READABLE_METADATA.md — full implementation guide
+                </a>
+              </li>
+              <li>
+                <a href="https://schema.org/docs/full.html">Schema.org — full type hierarchy</a>
+              </li>
+              <li>
+                <a href="https://validator.schema.org/">Schema Markup Validator</a>
+              </li>
+              <li>
+                <a href="https://www.w3.org/TR/json-ld11/">JSON-LD 1.1 specification (W3C)</a>
+              </li>
+              <li>
+                <a href="https://www.sitemaps.org/protocol.html">Sitemaps protocol</a>
+              </li>
+            </ul>
+          </aside>
+        </article>
+      </main>
+
+      <footer class="site-footer">
+        <p>
+          <strong>SUSTAINABILITY.md</strong> is an open policy format for
+          digital sustainability transparency and governance.
+        </p>
+        <p>
+          <a href="/sustainability.md/README.md">README</a>
+          ·
+          <a href="/sustainability.md/CONTRIBUTING.md">Contributing</a>
+          ·
+          <a href="https://github.com/mgifford/sustainability.md">GitHub Repo</a>
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

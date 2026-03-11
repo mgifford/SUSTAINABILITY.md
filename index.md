@@ -74,6 +74,9 @@ reference_cards:
   - title: Sustainable Web Design
     label: External companion resource
     url: ./sustainablewebdesign/
+  - title: Machine-Readable Metadata
+    label: JSON-LD, RDFa, Microdata and sitemap guidance
+    url: ./examples/MACHINE_READABLE_METADATA.md
 adopt_heading: How to Adopt
 adopt_steps:
   - title: 1. Publish a starter commitment
