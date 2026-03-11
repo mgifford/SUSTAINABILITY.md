@@ -152,6 +152,29 @@ Suggested workflow policy:
 - Track approximate AI call volume per issue/PR
 - Review monthly and set reduction goals
 
+## AI disclosure
+
+Document actual AI usage here. Keep this section up to date as tools or usage patterns change.
+
+### In building
+
+- [Describe how AI was used during development: code generation, drafting, testing, refactoring, etc.]
+- [List AI-assisted tools used: GitHub Copilot, ChatGPT, Claude, etc.]
+- [Note extent of human review and editing applied to AI-generated content]
+
+### In execution
+
+- [Describe any AI features active at runtime or page load, or state "None — static site / no runtime AI."]
+- [Note whether any AI features require user opt-in or run automatically]
+- [Describe any AI used in CI/CD pipelines that runs on every push or PR]
+
+### Models used
+
+| Purpose | Model / tool | When used |
+| :--- | :--- | :--- |
+| [purpose, e.g. code assistance] | [model name, e.g. GitHub Copilot / GPT-4] | [build-time / runtime / CI] |
+| [purpose] | [model name] | [when] |
+
 ## Time and space shifting
 
 ### Time shift
