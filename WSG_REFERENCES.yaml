@@ -11,6 +11,11 @@ guidelines:
     name: "Consider Sustainability in Early Ideation"
     description: "Integrate environmental thinking from the earliest stages of design and planning"
     url: "https://w3c.github.io/sustyweb/#WSG-2.4"
+
+  WSG-2.8:
+    name: "Integrate Sustainability Into Every Stage of the Ideation Process"
+    description: "Optimize materials created at every stage and consider the needs of and impact on the planet and all affected parties"
+    url: "https://www.w3.org/TR/web-sustainability-guidelines/#integrate-sustainability-into-every-stage-of-the-ideation-process"
   
   WSG-2.5:
     name: "Account For Stakeholder Issues"
