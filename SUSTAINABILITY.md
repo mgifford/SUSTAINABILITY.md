@@ -20,6 +20,36 @@ Applies to:
 - Design owner: community contributors
 - Review cadence: quarterly
 
+## Sustainability in early ideation
+
+Aligned with [WSG 2.8 – Integrate Sustainability Into Every Stage of the Ideation Process](https://www.w3.org/TR/web-sustainability-guidelines/#integrate-sustainability-into-every-stage-of-the-ideation-process).
+
+Consider the impact on the planet and all affected parties at every stage: from first idea through design, implementation, review, and deployment.
+
+### Questions to ask before building
+
+- Is this feature or change genuinely needed? What is the cost if we do not build it?
+- Which users, communities, or systems are affected, including those not represented in the room?
+- What is the expected data, compute, and bandwidth footprint of this change?
+- Can a simpler, lower-footprint approach meet the same need?
+- Does this add third-party dependencies? Are they justified?
+
+### Questions to ask during design
+
+- Does the design minimize unnecessary assets (images, fonts, scripts, animations)?
+- Can the default experience be lightweight, with richer content as an explicit opt-in?
+- Does the interaction model help users succeed quickly, reducing wasted page loads?
+
+### Questions to ask before merging
+
+- Does this change regress page weight, request count, or CI compute time?
+- Is AI assistance disclosed, and was it truly necessary?
+- Are new third-party scripts reviewed and justified?
+
+### For AI agents (WSG 2.8)
+
+Before proposing any change, ask: is this change needed at all? If yes, what is the simplest implementation that meets the requirement? Note expected sustainability impact (improves / neutral / regresses) in every PR description.
+
 ## Core requirements
 
 ### 1) Sustainability as a release criterion
@@ -130,4 +160,6 @@ This section documents actual AI usage in this project, separate from the AI usa
 
 Add to `AGENTS.md` or system prompts:
 
-> Read `SUSTAINABILITY.md` before planning or coding. Prefer low-compute deterministic approaches, minimize AI calls, enforce budgets, and shift deferrable workloads to cleaner time/region options where feasible.
+> Read `SUSTAINABILITY.md` before planning or coding. At ideation, ask whether the change is needed and choose the simplest approach first.
+> Prefer low-compute deterministic approaches, minimize AI calls, enforce budgets, and shift deferrable workloads to cleaner time/region options where feasible.
+> Note sustainability impact (improves / neutral / regresses) in every PR.

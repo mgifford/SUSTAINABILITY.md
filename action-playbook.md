@@ -37,8 +37,13 @@ It is intentionally practical: short checklists, clear ownership, and measurable
 
 ## Weekly workflow (team)
 
-### 1) Plan with impact in mind
+### 1) Plan with impact in mind (WSG 2.8)
 
+Apply [WSG 2.8](https://www.w3.org/TR/web-sustainability-guidelines/#integrate-sustainability-into-every-stage-of-the-ideation-process) at the very start:
+
+- Ask first: is this feature or change genuinely needed? What is the cost of not building it?
+- Consider planet and community impact, not only the immediate user need.
+- Choose the simplest approach that meets the requirement before designing the implementation.
 - Tag work items with sustainability impact labels (for example: `performance-budget`, `third-party-impact`, `ai-usage`, `grid-aware`).
 - Identify one expected effect for each change (for example: fewer requests, smaller page weight, reduced CI minutes).
 - Assign an owner for measurement and follow-up.
