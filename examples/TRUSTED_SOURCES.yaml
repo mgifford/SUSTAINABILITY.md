@@ -1,0 +1,371 @@
+version: 1
+generated_from: https://github.com/mgifford/SUSTAINABILITY.md/blob/main/README.md#trusted-references
+generated_on: '2026-03-11'
+notes:
+  - Machine-readable list of trusted sustainability references for the web.
+  - 'For a human-readable overview, see: https://w3c.github.io/sustainableweb-wsg/resources.html'
+  - Update authority_level, topic_tags, and ownership during curation.
+  - 'TODO: Pull additional resources directly from https://w3c.github.io/sustainableweb-wsg/resources.html'
+  - 'AI scraping policy: Sources can be marked with ''ai_scraping'' field. Values: ''allowed'' (default if omitted),
+    ''prohibited'' (do not scrape/train on content), ''restricted'' (use only for reference/citation, not training).'
+sources:
+  - id: sustainablewebdesign-org
+    domain: Sustainable Web Design
+    url: sustainablewebdesign.org
+    full_url: https://sustainablewebdesign.org/
+    best_for: sustainable design principles, methodology, carbon calculations
+    description: >
+      Community-driven resource providing a methodology and guidance for measuring
+      and reducing the environmental impact of websites and digital products.
+    authority_level: authoritative
+    topic_tags:
+      - design
+      - carbon
+      - methodology
+      - measurement
+    jurisdiction: global
+    wsg_version: []
+    last_reviewed: null
+    owner: Wholegrain Digital / Mightybytes
+    license: unknown
+    status: active
+
+  - id: w3c-wsg-tr
+    domain: W3C Web Sustainability Guidelines
+    url: w3.org/TR/web-sustainability-guidelines/
+    full_url: https://www.w3.org/TR/web-sustainability-guidelines/
+    best_for: standards, policy, sustainability guidelines, WSG
+    description: >
+      Published W3C Technical Report for the Web Sustainability Guidelines (WSG),
+      the primary normative reference for sustainable web practice.
+    authority_level: authoritative
+    topic_tags:
+      - standards
+      - wsg
+      - policy
+      - guidelines
+    jurisdiction: global
+    wsg_version:
+      - '1.0'
+    last_reviewed: null
+    owner: W3C Sustainable Web Working Group
+    license: W3C Document License
+    status: active
+
+  - id: w3c-wsg-guidelines-json
+    domain: WSG guidelines.json (editor draft)
+    url: w3c.github.io/sustainableweb-wsg/guidelines.json
+    full_url: https://w3c.github.io/sustainableweb-wsg/guidelines.json
+    best_for: machine-readable guidelines, automation, tooling
+    description: >
+      Machine-readable JSON representation of the WSG editor draft, useful for
+      tooling, automation, and CI integrations.
+    authority_level: authoritative
+    topic_tags:
+      - standards
+      - wsg
+      - machine-readable
+      - automation
+    jurisdiction: global
+    wsg_version:
+      - '1.0'
+    last_reviewed: null
+    owner: W3C Sustainable Web Working Group
+    license: W3C Document License
+    status: active
+
+  - id: w3c-wsg-resources
+    domain: WSG Resources (editor draft)
+    url: w3c.github.io/sustainableweb-wsg/resources.html
+    full_url: https://w3c.github.io/sustainableweb-wsg/resources.html
+    best_for: curated resources, tools, sustainability references
+    description: >
+      Human-readable curated resource list maintained by the W3C Sustainable Web
+      Working Group, covering tools, guidance, and community resources.
+    authority_level: authoritative
+    topic_tags:
+      - standards
+      - wsg
+      - resources
+      - curated
+    jurisdiction: global
+    wsg_version:
+      - '1.0'
+    last_reviewed: null
+    owner: W3C Sustainable Web Working Group
+    license: W3C Document License
+    status: active
+
+  - id: w3c-sustyweb-github
+    domain: W3C Sustainable Web WG (GitHub)
+    url: github.com/w3c/sustainableweb-wsg
+    full_url: https://github.com/w3c/sustainableweb-wsg
+    best_for: source, issues, contributions, editor draft
+    description: >
+      GitHub repository for the W3C Sustainable Web Working Group, containing
+      the source of the Web Sustainability Guidelines and related documents.
+    authority_level: authoritative
+    topic_tags:
+      - standards
+      - wsg
+      - open-source
+    jurisdiction: global
+    wsg_version:
+      - '1.0'
+    last_reviewed: null
+    owner: W3C Sustainable Web Working Group
+    license: W3C Document License
+    status: active
+
+  - id: thegreenwebfoundation-org
+    domain: The Green Web Foundation
+    url: thegreenwebfoundation.org
+    full_url: https://www.thegreenwebfoundation.org/
+    best_for: green hosting, carbon data, grid intensity, co2.js
+    description: >
+      Non-profit organisation working to move the internet to run on green energy.
+      Provides tools, data, and APIs for tracking and reducing the carbon impact
+      of digital infrastructure.
+    authority_level: authoritative
+    topic_tags:
+      - carbon
+      - green-hosting
+      - grid-intensity
+      - data
+    jurisdiction: global
+    wsg_version: []
+    last_reviewed: null
+    owner: The Green Web Foundation
+    license: unknown
+    status: active
+
+  - id: co2js-overview
+    domain: CO2.js (overview)
+    url: developers.thegreenwebfoundation.org/co2js/overview/
+    full_url: https://developers.thegreenwebfoundation.org/co2js/overview/
+    best_for: carbon estimation, JavaScript library, web carbon calculations
+    description: >
+      Developer documentation for CO2.js, an open-source JavaScript library for
+      estimating the carbon emissions of internet data transfer.
+    authority_level: authoritative
+    topic_tags:
+      - carbon
+      - javascript
+      - measurement
+      - co2js
+    jurisdiction: global
+    wsg_version: []
+    last_reviewed: null
+    owner: The Green Web Foundation
+    license: Apache-2.0
+    status: active
+
+  - id: co2js-github
+    domain: CO2.js (GitHub)
+    url: github.com/thegreenwebfoundation/co2.js/
+    full_url: https://github.com/thegreenwebfoundation/co2.js/
+    best_for: carbon estimation, open-source, JavaScript, npm
+    description: >
+      GitHub repository for CO2.js, the open-source library for estimating
+      the carbon cost of internet activity. Includes the Sustainable Web Design
+      model and Shift Project model implementations.
+    authority_level: authoritative
+    topic_tags:
+      - carbon
+      - javascript
+      - open-source
+      - co2js
+    jurisdiction: global
+    wsg_version: []
+    last_reviewed: null
+    owner: The Green Web Foundation
+    license: Apache-2.0
+    status: active
+
+  - id: co2js-playground
+    domain: CO2.js Playground (Observable)
+    url: observablehq.com/@greenweb/co2-js-playground
+    full_url: https://observablehq.com/@greenweb/co2-js-playground
+    best_for: interactive demo, carbon calculations, exploration
+    description: >
+      Interactive Observable notebook playground for exploring CO2.js carbon
+      calculations directly in the browser without a local install.
+    authority_level: to_review
+    topic_tags:
+      - carbon
+      - javascript
+      - demo
+      - co2js
+    jurisdiction: global
+    wsg_version: []
+    last_reviewed: null
+    owner: The Green Web Foundation
+    license: unknown
+    status: active
+
+  - id: grid-intensity-demo
+    domain: Grid Intensity Demo (Green Web Foundation)
+    url: gaw.greenweb.org/grid-intensity/
+    full_url: https://gaw.greenweb.org/grid-intensity/
+    best_for: grid intensity, real-time carbon data, grid-aware
+    description: >
+      Interactive demo showing real-time grid carbon intensity data, used to
+      illustrate grid-aware website patterns.
+    authority_level: to_review
+    topic_tags:
+      - grid-intensity
+      - carbon
+      - real-time
+      - demo
+    jurisdiction: global
+    wsg_version: []
+    last_reviewed: null
+    owner: The Green Web Foundation
+    license: unknown
+    status: active
+
+  - id: grid-intensity-github
+    domain: Grid Intensity (GitHub)
+    url: github.com/thegreenwebfoundation/grid-intensity
+    full_url: https://github.com/thegreenwebfoundation/grid-intensity
+    best_for: grid intensity, carbon-aware, open-source, polyfill
+    description: >
+      Open-source repository for the grid intensity polyfill and related tooling
+      from The Green Web Foundation.
+    authority_level: to_review
+    topic_tags:
+      - grid-intensity
+      - carbon
+      - open-source
+      - grid-aware
+    jurisdiction: global
+    wsg_version: []
+    last_reviewed: null
+    owner: The Green Web Foundation
+    license: Apache-2.0
+    status: active
+
+  - id: gwf-grid-aware-api
+    domain: Green Web Foundation – Grid-Aware Websites API
+    url: thegreenwebfoundation.org/news/a-new-api-for-grid-aware-websites-and-beyond/
+    full_url: https://www.thegreenwebfoundation.org/news/a-new-api-for-grid-aware-websites-and-beyond/
+    best_for: grid-aware, API, carbon-aware computing
+    description: >
+      Announcement and overview of The Green Web Foundation's new API for
+      building grid-aware websites that adapt behaviour based on the carbon
+      intensity of the local electricity grid.
+    authority_level: to_review
+    topic_tags:
+      - grid-aware
+      - carbon
+      - api
+    jurisdiction: global
+    wsg_version: []
+    last_reviewed: null
+    owner: The Green Web Foundation
+    license: unknown
+    status: active
+
+  - id: gwf-accessibility-environmental-savings
+    domain: Green Web Foundation – Accessibility and Environmental Savings
+    url: thegreenwebfoundation.org/news/how-do-we-work-out-the-environmental-savings-from-accessibility/
+    full_url: https://www.thegreenwebfoundation.org/news/how-do-we-work-out-the-environmental-savings-from-accessibility/
+    best_for: accessibility, environmental impact, sustainability intersection
+    description: >
+      Article exploring the relationship between web accessibility improvements
+      and measurable environmental savings, relevant to inclusive sustainability practice.
+    authority_level: to_review
+    topic_tags:
+      - accessibility
+      - carbon
+      - methodology
+    jurisdiction: global
+    wsg_version: []
+    last_reviewed: null
+    owner: The Green Web Foundation
+    license: unknown
+    status: active
+
+  - id: nicchan-grid-aware-websites
+    domain: Nic Chan – Exploring Grid-Aware Websites
+    url: nicchan.me/blog/exploring-grid-aware-websites/
+    full_url: https://www.nicchan.me/blog/exploring-grid-aware-websites/
+    best_for: grid-aware, implementation, developer perspective
+    description: >
+      Developer blog post exploring practical implementation of grid-aware website
+      patterns with hands-on examples and reflections.
+    authority_level: to_review
+    topic_tags:
+      - grid-aware
+      - development
+      - carbon
+    jurisdiction: global
+    wsg_version: []
+    last_reviewed: null
+    owner: Nic Chan
+    license: unknown
+    status: active
+
+  - id: electricitymaps-api
+    domain: Electricity Maps – Developer API
+    url: app.electricitymaps.com/developer-hub/api/getting-started
+    full_url: https://app.electricitymaps.com/developer-hub/api/getting-started#geolocation
+    best_for: grid intensity data, real-time carbon, API, geolocation
+    description: >
+      Developer documentation for the Electricity Maps API, providing real-time
+      and historical electricity carbon intensity data by region, used in
+      grid-aware computing implementations.
+    authority_level: to_review
+    topic_tags:
+      - grid-intensity
+      - carbon
+      - api
+      - real-time
+    jurisdiction: global
+    wsg_version: []
+    last_reviewed: null
+    owner: Electricity Maps
+    license: unknown
+    status: active
+
+  - id: gwf-green-energy-rules
+    domain: Green Web Foundation – Green Energy Rules
+    url: thegreenwebfoundation.org/news/ending-this-month-the-best-chance-in-years-to-fix-the-rules-for-green-energy/
+    full_url: https://www.thegreenwebfoundation.org/news/ending-this-month-the-best-chance-in-years-to-fix-the-rules-for-green-energy/
+    best_for: policy, green energy standards, advocacy
+    description: >
+      Green Web Foundation article on a critical policy window for improving
+      rules around green energy accounting and certification.
+    authority_level: to_review
+    topic_tags:
+      - policy
+      - green-energy
+      - advocacy
+    jurisdiction: global
+    wsg_version: []
+    last_reviewed: null
+    owner: The Green Web Foundation
+    license: unknown
+    status: active
+
+  - id: chrisadams-decarbonising-datacentres
+    domain: Chris Adams – Decarbonising Data Centres
+    url: rtl.chrisadams.me.uk/2026/01/how-i-think-of-decarbonising-the-energy-used-by-datacentres-on-the-grid/
+    full_url: https://rtl.chrisadams.me.uk/2026/01/how-i-think-of-decarbonising-the-energy-used-by-datacentres-on-the-grid/
+    best_for: data centres, decarbonisation, grid, energy
+    description: >
+      Personal essay by Chris Adams (Green Web Foundation) on frameworks for
+      thinking about decarbonising the energy used by data centres on the electricity
+      grid.
+    authority_level: to_review
+    topic_tags:
+      - data-centres
+      - carbon
+      - grid
+      - energy
+    jurisdiction: global
+    wsg_version: []
+    last_reviewed: null
+    owner: Chris Adams
+    license: unknown
+    status: active

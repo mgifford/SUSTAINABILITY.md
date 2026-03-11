@@ -180,23 +180,10 @@ Active sustainability debt for this project. Each entry has an owner and a targe
 
 ## Trusted references
 
-- https://sustainablewebdesign.org/
-- https://www.w3.org/TR/web-sustainability-guidelines/
-- https://w3c.github.io/sustainableweb-wsg/guidelines.json
-- https://github.com/w3c/sustyweb
-- https://w3c.github.io/sustainableweb-wsg/resources.html
-- https://www.thegreenwebfoundation.org/
-- https://developers.thegreenwebfoundation.org/co2js/overview/
-- https://github.com/thegreenwebfoundation/co2.js/
-- https://observablehq.com/@greenweb/co2-js-playground
-- https://gaw.greenweb.org/grid-intensity/
-- https://github.com/thegreenwebfoundation/grid-intensity
-- https://www.thegreenwebfoundation.org/news/a-new-api-for-grid-aware-websites-and-beyond/
-- https://www.thegreenwebfoundation.org/news/how-do-we-work-out-the-environmental-savings-from-accessibility/
-- https://www.nicchan.me/blog/exploring-grid-aware-websites/
-- https://app.electricitymaps.com/developer-hub/api/getting-started#geolocation
-- https://www.thegreenwebfoundation.org/news/ending-this-month-the-best-chance-in-years-to-fix-the-rules-for-green-energy/
-- https://rtl.chrisadams.me.uk/2026/01/how-i-think-of-decarbonising-the-energy-used-by-datacentres-on-the-grid/
+The trusted references for this project are maintained in machine-readable format:
+
+- **Machine-readable:** [`examples/TRUSTED_SOURCES.yaml`](examples/TRUSTED_SOURCES.yaml)
+- **Human-readable:** [WSG Resources (W3C editor draft)](https://w3c.github.io/sustainableweb-wsg/resources.html)
 
 ---
 
@@ -243,6 +230,7 @@ This section documents actual AI usage in this project, distinct from the [AI us
 - `action-playbook.md`: action-oriented checklist for teams and AI agents.
 - `github-actions-sustainability.md`: detailed guide to GitHub API capabilities and limitations for carbon-aware computing.
 - `WSG_REFERENCES.yaml`: machine-readable WSG and STAR mapping.
+- `examples/TRUSTED_SOURCES.yaml`: machine-readable list of trusted sustainability references (see also [WSG Resources](https://w3c.github.io/sustainableweb-wsg/resources.html)).
 - `CONTRIBUTING.md`: participation guide for contributors.
 
 ## Automation
