@@ -1,4 +1,10 @@
 ---
+layout: page
+title: SUSTAINABILITY Template
+meta_title: SUSTAINABILITY Template · SUSTAINABILITY.md
+description: A practical, fillable template for documenting sustainability commitments, engineering guardrails, and measurable progress for any web project.
+lede: Copy this template, fill in the blanks, and commit it as SUSTAINABILITY.md in your project root.
+source_url: https://raw.githubusercontent.com/mgifford/sustainability.md/main/SUSTAINABILITY-template.md
 sustainability:
   standard: WSG 1.0
 
@@ -35,6 +41,7 @@ sustainability:
   carbon_txt: carbon.txt
 ---
 
+<!-- markdownlint-disable MD025 -->
 # SUSTAINABILITY.md
 
 > Template for teams that want a practical, measurable sustainability policy for engineering, accessibility, and AI usage.
