@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CO2.js Footer Demo · SUSTAINABILITY.md</title>
+    <meta
+      name="description"
+      content="Working demonstration of a CO2.js-powered sustainability footer that displays page emissions, transfer size, and green hosting status — aligned with WSG 5.x (Establish Sustainability Reporting Mechanisms)."
+    />
+    <link rel="stylesheet" href="/sustainability.md/assets/css/site.css" />
+
+    <!--
+      This page demonstrates the CO2.js footer pattern used on
+      https://mgifford.github.io/SUSTAINABILITY.md/
+
+      The footer calculates three values in the browser at load time:
+        1. Estimated CO₂e per page view (using CO2.js SWD v4 model)
+        2. Total page transfer size (from the Performance Navigation Timing API)
+        3. Green-hosting status (from the Green Web Foundation API)
+
+      Replication steps for your own site:
+        1. Copy the <footer> HTML block into your page template.
+        2. Copy the <script type="module"> block before </body>.
+        3. Adjust the id attributes if your template already uses them.
+        4. Optionally hard-code greenHosted if your host is on the GWF verified
+           list and you want to avoid the hosting API call.
+
+      No npm install is required. The script loads CO2.js from a CDN.
+
+      WSG reference: https://www.w3.org/TR/web-sustainability-guidelines/#establish-sustainability-reporting-mechanisms
+      CO2.js docs:   https://developers.thegreenwebfoundation.org/co2js/overview/
+    -->
+  </head>
+  <body>
+    <div class="page-shell">
+      <header>
+        <a href="/sustainability.md/">SUSTAINABILITY.md</a>
+      </header>
+
+      <nav aria-label="Main">
+        <ul>
+          <li><a href="/sustainability.md/README.md">README</a></li>
+          <li><a href="/sustainability.md/action-playbook.md">Action Playbook</a></li>
+          <li><a href="/sustainability.md/resources.md">Resources</a></li>
+        </ul>
+      </nav>
+
+      <main id="main-content">
+        <article>
+          <h1>CO2.js Footer: Working Demo</h1>
+
+          <p>
+            This page demonstrates the sustainability footer pattern used on
+            <a href="https://mgifford.github.io/SUSTAINABILITY.md/">SUSTAINABILITY.md</a>.
+            Scroll to the bottom to see it in action. The values update once
+            all resources have loaded.
+          </p>
+
+          <p>
+            The pattern satisfies the W3C Web Sustainability Guidelines call for
+            <a href="https://www.w3.org/TR/web-sustainability-guidelines/#establish-sustainability-reporting-mechanisms"
+            >WSG 5.x — Establish Sustainability Reporting Mechanisms</a>
+            by surfacing a live per-page-view carbon estimate to every visitor
+            without adding a server-side dependency or a heavy third-party bundle.
+          </p>
+
+          <!-- ── Section 1: What the footer shows ─────────────────────────── -->
+          <section aria-labelledby="what-heading">
+            <h2 id="what-heading">1. What the footer shows</h2>
+
+            <table>
+              <caption>Footer metrics and their sources</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Metric</th>
+                  <th scope="col">Source</th>
+                  <th scope="col">Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Page emissions (gCO₂e / page view)</td>
+                  <td>
+                    <a href="https://developers.thegreenwebfoundation.org/co2js/overview/">CO2.js</a>
+                    SWD v4 model
+                  </td>
+                  <td>Directional estimate; not a precise measurement</td>
+                </tr>
+                <tr>
+                  <td>Transfer size</td>
+                  <td>
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming"
+                    >Performance Navigation Timing API</a>
+                  </td>
+                  <td>Sum of all navigation and resource entries</td>
+                </tr>
+                <tr>
+                  <td>Green hosting</td>
+                  <td>
+                    <a href="https://www.thegreenwebfoundation.org/">Green Web Foundation</a>
+                    hosting check API
+                  </td>
+                  <td>Checks the current page hostname; result may vary by environment</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <!-- ── Section 2: Copy-paste HTML ───────────────────────────────── -->
+          <section aria-labelledby="html-heading">
+            <h2 id="html-heading">2. Copy-paste HTML</h2>
+
+            <p>
+              Add the following block to your page template. The three
+              <code>&lt;span&gt;</code> elements are updated by the script in
+              <a href="#script-heading">Section 3</a>.
+            </p>
+
+            <pre><code>&lt;p class="footer-metrics"&gt;
+  &lt;strong&gt;Page emissions:&lt;/strong&gt;
+  &lt;span id="footer-co2-estimate"&gt;Calculating…&lt;/span&gt;
+  ·
+  &lt;strong&gt;Transfer:&lt;/strong&gt;
+  &lt;span id="footer-co2-bytes"&gt;Calculating…&lt;/span&gt;
+  ·
+  &lt;strong&gt;Green hosting:&lt;/strong&gt;
+  &lt;span id="footer-green-hosting"&gt;Checking…&lt;/span&gt;
+  ·
+  &lt;strong&gt;Method:&lt;/strong&gt;
+  &lt;a href="https://www.thegreenwebfoundation.org/news/start-calculating-digital-carbon-emissions-in-5-minutes-with-co2-js/"
+  &gt;CO2.js quickstart&lt;/a&gt;
+&lt;/p&gt;</code></pre>
+          </section>
+
+          <!-- ── Section 3: Copy-paste script ─────────────────────────────── -->
+          <section aria-labelledby="script-heading">
+            <h2 id="script-heading">3. Copy-paste script</h2>
+
+            <p>
+              Paste this <code>&lt;script type="module"&gt;</code> block before
+              the closing <code>&lt;/body&gt;</code> tag. No build step or
+              <code>npm install</code> is required — CO2.js loads from a CDN.
+              For production use, replace <code>@latest</code> with a pinned
+              version (e.g. <code>@0.18.0</code>) so upstream releases do not
+              silently change your reported numbers.
+            </p>
+
+            <pre><code>&lt;script type="module"&gt;
+  import { co2 } from "https://cdn.jsdelivr.net/npm/@tgwf/co2@latest/dist/esm/index.js";
+  import { check as greenHostingCheck } from "https://cdn.jsdelivr.net/npm/@tgwf/co2@latest/dist/esm/hosting.js";
+
+  const estimateEl = document.getElementById("footer-co2-estimate");
+  const bytesEl    = document.getElementById("footer-co2-bytes");
+  const hostingEl  = document.getElementById("footer-green-hosting");
+
+  const formatBytes = (bytes) =&gt; {
+    if (!Number.isFinite(bytes) || bytes &lt;= 0) return "0 B";
+    const units    = ["B", "KB", "MB", "GB"];
+    const exponent = Math.min(Math.floor(Math.log(bytes) / Math.log(1024)), units.length - 1);
+    const value    = bytes / (1024 ** exponent);
+    return `${value.toFixed(value &gt;= 10 || exponent === 0 ? 0 : 1)} ${units[exponent]}`;
+  };
+
+  const totalTransferBytes = () =&gt; {
+    const entries = [
+      ...performance.getEntriesByType("navigation"),
+      ...performance.getEntriesByType("resource"),
+    ];
+    return entries.reduce((total, entry) =&gt; {
+      const transfer = Number(entry.transferSize) || 0;
+      const encoded  = Number(entry.encodedBodySize) || 0;
+      return total + (transfer &gt; 0 ? transfer : encoded);
+    }, 0);
+  };
+
+  const render = async () =&gt; {
+    if (!estimateEl || !bytesEl || !hostingEl) return;
+
+    // ── Emissions estimate ──────────────────────────────────────────────
+    try {
+      const bytes      = totalTransferBytes();
+      const calculator = new co2({ model: "swd", version: 4 });
+      const grams      = calculator.perVisit(bytes, false);
+
+      bytesEl.textContent    = formatBytes(bytes);
+      estimateEl.textContent = Number.isFinite(grams)
+        ? `${grams.toFixed(3)} gCO2e / page view`
+        : "Unavailable";
+    } catch {
+      bytesEl.textContent    = "Unavailable";
+      estimateEl.textContent = "Unavailable";
+    }
+
+    // ── Green-hosting check ─────────────────────────────────────────────
+    // Pass the hostname of the page being checked.
+    // For a static site you can determine this once and hard-code it.
+    try {
+      const isGreen        = await greenHostingCheck(window.location.hostname);
+      hostingEl.textContent = isGreen ? "Yes (Green Web Foundation)" : "No / unknown";
+    } catch {
+      hostingEl.textContent = "Unavailable";
+    }
+  };
+
+  // Run after all resources have loaded so transfer sizes are complete.
+  if (document.readyState === "complete") {
+    render();
+  } else {
+    window.addEventListener("load", render, { once: true });
+  }
+&lt;/script&gt;</code></pre>
+          </section>
+
+          <!-- ── Section 4: Design trade-offs ─────────────────────────────── -->
+          <section aria-labelledby="tradeoffs-heading">
+            <h2 id="tradeoffs-heading">4. Design trade-offs</h2>
+
+            <table>
+              <caption>Static vs. dynamic footer disclosure</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Approach</th>
+                  <th scope="col">When to use</th>
+                  <th scope="col">Trade-offs</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Static string (e.g. "≈ 0.08 gCO₂e")</td>
+                  <td>Most sites — update after each Lighthouse audit</td>
+                  <td>Zero JS runtime cost; does not vary per load</td>
+                </tr>
+                <tr>
+                  <td>Dynamic (this demo)</td>
+                  <td>Dashboards or pages with variable payloads</td>
+                  <td>
+                    Adds CDN JS dependency (~11 KB gzipped); result
+                    varies each load; requires a network call for hosting check
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <p>
+              For a static site, the static approach is lower-impact and equally
+              informative. Reserve the dynamic pattern for cases where the per-load
+              number is meaningfully different.
+            </p>
+          </section>
+
+          <!-- ── Section 5: WSG references ────────────────────────────────── -->
+          <section aria-labelledby="wsg-heading">
+            <h2 id="wsg-heading">5. WSG references</h2>
+
+            <table>
+              <caption>Relevant Web Sustainability Guideline mappings</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Guideline</th>
+                  <th scope="col">How this demo addresses it</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <a href="https://www.w3.org/TR/web-sustainability-guidelines/#establish-sustainability-reporting-mechanisms"
+                    >WSG 5.x — Establish Sustainability Reporting Mechanisms</a>
+                  </td>
+                  <td>Per-page-view CO₂ estimate visible to every visitor in the footer</td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="https://www.w3.org/TR/web-sustainability-guidelines/#include-sustainability-information-in-performance-reports"
+                    >WSG 5.28 — Include Sustainability Information in Reports</a>
+                  </td>
+                  <td>Transfer size and hosting source disclosed alongside emissions estimate</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <aside>
+            <h2>Related resources</h2>
+            <ul>
+              <li>
+                <a href="https://developers.thegreenwebfoundation.org/co2js/overview/"
+                >CO2.js documentation</a>
+              </li>
+              <li>
+                <a href="https://www.thegreenwebfoundation.org/news/start-calculating-digital-carbon-emissions-in-5-minutes-with-co2-js/"
+                >CO2.js quickstart guide (Green Web Foundation)</a>
+              </li>
+              <li>
+                <a href="https://www.thegreenwebfoundation.org/">Green Web Foundation hosting checker</a>
+              </li>
+              <li>
+                <a href="https://sustainablewebdesign.org/estimating-digital-emissions/"
+                >Sustainable Web Design model</a>
+              </li>
+              <li>
+                <a href="/sustainability.md/reporting-sustainability-metrics.html"
+                >Reporting Digital Sustainability Metrics — full guide</a>
+              </li>
+            </ul>
+          </aside>
+        </article>
+      </main>
+
+      <!-- ── Live CO2.js footer (copy this block) ────────────────────────── -->
+      <footer class="site-footer">
+        <p>
+          <strong>SUSTAINABILITY.md</strong> is an open policy format for
+          digital sustainability transparency and governance.
+        </p>
+        <p class="footer-metrics">
+          <strong>Page emissions:</strong>
+          <span id="footer-co2-estimate">Calculating…</span>
+          ·
+          <strong>Transfer:</strong>
+          <span id="footer-co2-bytes">Calculating…</span>
+          ·
+          <strong>Green hosting:</strong>
+          <span id="footer-green-hosting">Checking…</span>
+          ·
+          <strong>Method:</strong>
+          <a href="https://www.thegreenwebfoundation.org/news/start-calculating-digital-carbon-emissions-in-5-minutes-with-co2-js/"
+          >CO2.js quickstart</a>
+          ·
+          <a href="https://developers.thegreenwebfoundation.org/co2js/overview/">CO2.js docs</a>
+        </p>
+        <p>
+          <a href="/sustainability.md/README.md">README</a>
+          ·
+          <a href="/sustainability.md/CONTRIBUTING.md">Contributing</a>
+          ·
+          <a href="https://github.com/mgifford/sustainability.md">GitHub Repo</a>
+        </p>
+      </footer>
+    </div>
+
+    <!-- ── CO2.js footer script (copy this block) ───────────────────────── -->
+    <!--
+      CDN note: @latest is used here for simplicity and to match the project
+      site layout. For production use, pin to a specific version (e.g. @0.18.0)
+      so that upstream releases cannot change your reported numbers silently.
+    -->
+    <script type="module">
+      import { co2 } from "https://cdn.jsdelivr.net/npm/@tgwf/co2@latest/dist/esm/index.js";
+      import { check as greenHostingCheck } from "https://cdn.jsdelivr.net/npm/@tgwf/co2@latest/dist/esm/hosting.js";
+
+      const estimateEl = document.getElementById("footer-co2-estimate");
+      const bytesEl    = document.getElementById("footer-co2-bytes");
+      const hostingEl  = document.getElementById("footer-green-hosting");
+
+      const formatBytes = (bytes) => {
+        if (!Number.isFinite(bytes) || bytes <= 0) return "0 B";
+        const units    = ["B", "KB", "MB", "GB"];
+        const exponent = Math.min(Math.floor(Math.log(bytes) / Math.log(1024)), units.length - 1);
+        const value    = bytes / (1024 ** exponent);
+        return `${value.toFixed(value >= 10 || exponent === 0 ? 0 : 1)} ${units[exponent]}`;
+      };
+
+      const totalTransferBytes = () => {
+        const entries = [
+          ...performance.getEntriesByType("navigation"),
+          ...performance.getEntriesByType("resource"),
+        ];
+        return entries.reduce((total, entry) => {
+          const transfer = Number(entry.transferSize) || 0;
+          const encoded  = Number(entry.encodedBodySize) || 0;
+          return total + (transfer > 0 ? transfer : encoded);
+        }, 0);
+      };
+
+      const render = async () => {
+        if (!estimateEl || !bytesEl || !hostingEl) return;
+
+        try {
+          const bytes      = totalTransferBytes();
+          const calculator = new co2({ model: "swd", version: 4 });
+          const grams      = calculator.perVisit(bytes, false);
+
+          bytesEl.textContent    = formatBytes(bytes);
+          estimateEl.textContent = Number.isFinite(grams)
+            ? `${grams.toFixed(3)} gCO2e / page view`
+            : "Unavailable";
+        } catch {
+          bytesEl.textContent    = "Unavailable";
+          estimateEl.textContent = "Unavailable";
+        }
+
+        try {
+          const isGreen         = await greenHostingCheck(window.location.hostname);
+          hostingEl.textContent = isGreen ? "Yes (Green Web Foundation)" : "No / unknown";
+        } catch {
+          hostingEl.textContent = "Unavailable";
+        }
+      };
+
+      if (document.readyState === "complete") {
+        render();
+      } else {
+        window.addEventListener("load", render, { once: true });
+      }
+    </script>
+  </body>
+</html>
