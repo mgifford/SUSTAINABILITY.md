@@ -1,4 +1,11 @@
-# SUSTAINABILITY.md
+---
+layout: page
+title: Policy File
+meta_title: Policy File · SUSTAINABILITY.md
+description: Project instructions for reducing digital emissions, resource use, and waste across product, code, and operations.
+lede: A reference SUSTAINABILITY.md policy — use as-is or adapt for your own project.
+source_url: https://raw.githubusercontent.com/mgifford/sustainability.md/main/README.md
+---
 
 > **Project instructions for reducing digital emissions, resource use, and waste across product, code, and operations.**
 

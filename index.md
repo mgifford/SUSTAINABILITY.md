@@ -44,13 +44,13 @@ examples_heading: Reference Examples
 reference_cards:
   - title: Full Template
     label: SUSTAINABILITY-template.md
-    url: ./SUSTAINABILITY-template.md
+    url: ./SUSTAINABILITY-template/
   - title: Action Playbook
     label: Team + AI implementation guide
     url: ./action-playbook/
   - title: Policy File
     label: README.md
-    url: ./README.md
+    url: ./README/
   - title: GitHub Actions Guide
     label: API capabilities for carbon-aware computing
     url: ./github-actions-sustainability/
@@ -62,7 +62,7 @@ reference_cards:
     url: ./reporting-sustainability-metrics/
   - title: WSG Mapping
     label: WSG_REFERENCES.yaml
-    url: ./WSG_REFERENCES.yaml
+    url: ./wsg-references/
   - title: W3C WSG
     label: Web Sustainability Guidelines
     url: https://www.w3.org/TR/web-sustainability-guidelines/
@@ -71,7 +71,7 @@ reference_cards:
     url: ./resources/
   - title: Guidelines Data
     label: guidelines.json
-    url: ./guidelines.json
+    url: ./guidelines/
   - title: Sustainable Web Design
     label: External companion resource
     url: ./sustainablewebdesign/
