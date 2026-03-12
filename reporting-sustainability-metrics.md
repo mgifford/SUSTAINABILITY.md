@@ -142,6 +142,10 @@ window.addEventListener("load", () => {
 baseline is lower-impact and equally informative. Reserve dynamic calculation for cases where
 the number is meaningfully different between page loads.
 
+See [CO2JS\_FOOTER\_DEMO.html](examples/CO2JS_FOOTER_DEMO.html) for a fully working,
+copy-paste example that also checks green-hosting status and formats transfer size — the same
+pattern used on the SUSTAINABILITY.md project site.
+
 ---
 
 ## Section 2: The CARBON.txt standard
