@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Responsive Layout Demo · SUSTAINABILITY.md</title>
+    <meta
+      name="description"
+      content="Working demonstration of mobile-first, container-query-driven layouts with carbon-aware progressive enhancement, aligned with WSG 3.6 (Ensure Layouts Work for Different Devices and Requirements)."
+    />
+    <link rel="stylesheet" href="/sustainability.md/assets/css/site.css" />
+
+    <!--
+      This page demonstrates the patterns documented in
+      https://www.w3.org/TR/web-sustainability-guidelines/#ensure-layouts-work-for-different-devices-and-requirements
+
+      Key techniques:
+        1. Mobile-first base styles — minimal CSS needed for small screens.
+        2. Container queries (@container) — components adapt to their parent,
+           not just the viewport, reducing the need for page-level media queries.
+        3. Carbon-aware media features — prefers-reduced-motion and
+           prefers-reduced-data trim unnecessary resource usage per user preference.
+        4. Progressive enhancement — core content is readable without CSS or JS.
+
+      This file is validated by html-validate in CI (see .htmlvalidate.json).
+    -->
+
+    <style>
+      /* ── 1. Design tokens ───────────────────────────────────────────────── */
+      :root {
+        --card-bg: #f7f7f8;
+        --card-border: #e5e7eb;
+        --gap: 1rem;
+        --radius: 0.5rem;
+        color-scheme: light dark;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --card-bg: #12161d;
+          --card-border: #2a2f3a;
+        }
+      }
+
+      /* ── 2. Mobile-first base layout ────────────────────────────────────── */
+      /*
+        All layout defaults target the smallest screen.
+        No explicit breakpoints are needed for the base — just sensible defaults.
+      */
+      .demo-section {
+        margin-block: 2rem;
+      }
+
+      .demo-section h2 {
+        margin-block-end: 0.75rem;
+      }
+
+      /* ── 3. Container query setup ────────────────────────────────────────── */
+      /*
+        Establish a named containment context on the wrapper, not on the viewport.
+        This lets each component respond to how much space it actually has,
+        independent of how wide the browser window is.
+
+        Reference: https://www.joshwcomeau.com/css/container-queries-introduction/
+      */
+      .card-grid-wrapper {
+        container-type: inline-size;
+        container-name: card-grid;
+      }
+
+      /* Mobile-first: single column by default */
+      .card-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--gap);
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Two columns when the container is at least 36rem wide (tablet-ish) */
+      @container card-grid (min-inline-size: 36rem) {
+        .card-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      /* Three columns when the container is at least 60rem wide (desktop) */
+      @container card-grid (min-inline-size: 60rem) {
+        .card-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      .card {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: var(--radius);
+        padding: 1.25rem;
+      }
+
+      .card h3 {
+        margin-block: 0 0.4rem;
+      }
+
+      /* ── 4. Container-aware sidebar layout ───────────────────────────────── */
+      /*
+        Article + aside default to stacked (mobile).
+        When there is room (container ≥ 48rem), switch to a side-by-side layout.
+      */
+      .article-wrapper {
+        container-type: inline-size;
+        container-name: article-layout;
+      }
+
+      .article-layout {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--gap);
+      }
+
+      @container article-layout (min-inline-size: 48rem) {
+        .article-layout {
+          grid-template-columns: 2fr 1fr;
+          align-items: start;
+        }
+      }
+
+      /* ── 5. Carbon-aware motion ──────────────────────────────────────────── */
+      /*
+        Transitions are opt-in: they only activate when the user has NOT
+        requested reduced motion. This avoids unnecessary GPU work on
+        devices that prefer quieter rendering.
+      */
+      .animated-badge {
+        display: inline-block;
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: var(--radius);
+        padding: 0.35rem 0.75rem;
+        font-size: 0.85rem;
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        .animated-badge {
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .animated-badge:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+        }
+      }
+
+      /* ── 6. Carbon-aware data usage ──────────────────────────────────────── */
+      /*
+        When the user signals a preference for reduced data consumption,
+        omit decorative background images. The layout remains functional
+        and all text content stays visible.
+      */
+      .hero-illustration {
+        min-height: 6rem;
+        background: var(--card-bg);
+        border: 1px dashed var(--card-border);
+        border-radius: var(--radius);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        font-style: italic;
+        color: #6b7280;
+      }
+
+      @media (prefers-reduced-data: no-preference) {
+        /*
+          In a real project this would load a decorative background image only
+          when the user has not opted for data savings. Here we illustrate the
+          pattern with a subtle gradient that stands in for an image load.
+        */
+        .hero-illustration {
+          background-image: linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 100%);
+          border-style: solid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-shell">
+      <!--
+        Page structure follows the same landmark pattern used throughout the
+        project: header → nav → main → footer.
+      -->
+
+      <header>
+        <a href="/sustainability.md/">SUSTAINABILITY.md</a>
+      </header>
+
+      <nav aria-label="Main">
+        <ul>
+          <li><a href="/sustainability.md/README.md">README</a></li>
+          <li><a href="/sustainability.md/action-playbook.md">Action Playbook</a></li>
+          <li><a href="/sustainability.md/resources.md">Resources</a></li>
+        </ul>
+      </nav>
+
+      <main id="main-content">
+        <article>
+          <h1>Responsive Layout Patterns: Working Demo</h1>
+
+          <p>
+            This page demonstrates layout techniques required by
+            <a
+              href="https://www.w3.org/TR/web-sustainability-guidelines/#ensure-layouts-work-for-different-devices-and-requirements"
+            >WSG 3.6 — Ensure Layouts Work for Different Devices and
+            Requirements</a
+            >. It is validated automatically by html-validate in CI.
+          </p>
+
+          <!-- ── Section 1: Container queries ───────────────────────────────── -->
+          <section class="demo-section" aria-labelledby="cq-heading">
+            <h2 id="cq-heading">1. Container queries instead of page queries</h2>
+            <p>
+              The card grid below adapts based on <em>how much space its
+              container has</em>, not the viewport width. This makes the component
+              reusable anywhere on the page regardless of surrounding layout.
+            </p>
+
+            <!-- ✅ containment context declared on the wrapper, not the body -->
+            <div class="card-grid-wrapper">
+              <ul class="card-grid">
+                <li class="card">
+                  <h3>Mobile-first defaults</h3>
+                  <p>
+                    One column. No container query needed. All content is
+                    readable without CSS.
+                  </p>
+                </li>
+                <li class="card">
+                  <h3>Tablet-width container</h3>
+                  <p>
+                    At 36 rem inline size the grid switches to two columns using
+                    <code>@container card-grid (min-inline-size: 36rem)</code>.
+                  </p>
+                </li>
+                <li class="card">
+                  <h3>Desktop-width container</h3>
+                  <p>
+                    At 60 rem the grid expands to three columns, still driven by
+                    the parent container rather than the viewport.
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- ── Section 2: Sidebar layout ──────────────────────────────────── -->
+          <section class="demo-section" aria-labelledby="sidebar-heading">
+            <h2 id="sidebar-heading">2. Container-aware sidebar</h2>
+            <p>
+              Article content and an aside stack vertically on narrow containers
+              and shift to a two-column layout when there is room.
+            </p>
+
+            <div class="article-wrapper">
+              <div class="article-layout">
+                <div>
+                  <h3>Main content area</h3>
+                  <p>
+                    This column takes two-thirds of the available space when the
+                    container is at least 48 rem wide.
+                  </p>
+                  <p>
+                    On narrow containers it occupies the full width so text
+                    remains legible without horizontal scrolling.
+                  </p>
+                </div>
+                <aside aria-label="Related resources">
+                  <h3>Aside</h3>
+                  <p>
+                    Supplementary content. Stacks below main content on small
+                    containers; moves alongside it on wider ones.
+                  </p>
+                </aside>
+              </div>
+            </div>
+          </section>
+
+          <!-- ── Section 3: Carbon-aware motion ────────────────────────────── -->
+          <section class="demo-section" aria-labelledby="motion-heading">
+            <h2 id="motion-heading">3. Carbon-aware motion</h2>
+            <p>
+              Transitions are activated only when the user has
+              <strong>not</strong> requested reduced motion. This avoids
+              unnecessary GPU work on devices that prefer quieter rendering.
+            </p>
+            <p>
+              Hover the badge below. On systems with
+              <code>prefers-reduced-motion: reduce</code> the badge is static.
+            </p>
+            <p>
+              <span class="animated-badge">Hover me (motion opt-in)</span>
+            </p>
+            <p>
+              CSS pattern:
+            </p>
+            <pre><code>@media (prefers-reduced-motion: no-preference) {
+  .element { transition: transform 0.2s ease; }
+}</code></pre>
+          </section>
+
+          <!-- ── Section 4: Carbon-aware data loading ───────────────────────── -->
+          <section class="demo-section" aria-labelledby="data-heading">
+            <h2 id="data-heading">4. Carbon-aware data loading</h2>
+            <p>
+              Decorative images and heavy backgrounds are skipped when
+              <code>prefers-reduced-data: reduce</code> is set. All text content
+              and layout remain fully functional.
+            </p>
+
+            <!-- ✅ Plain div with visible caption text — no image role needed here -->
+            <div class="hero-illustration">
+              <span aria-hidden="true">Decorative illustration (loaded only when prefers-reduced-data is not set)</span>
+            </div>
+
+            <p>
+              CSS pattern:
+            </p>
+            <pre><code>@media (prefers-reduced-data: no-preference) {
+  .hero { background-image: url("hero.webp"); }
+}</code></pre>
+          </section>
+
+          <!-- ── Section 5: Progressive enhancement summary ─────────────────── -->
+          <section class="demo-section" aria-labelledby="pe-heading">
+            <h2 id="pe-heading">5. Progressive enhancement checklist</h2>
+            <p>
+              Each layer adds capability without breaking the layer below.
+            </p>
+            <ol>
+              <li>
+                <strong>HTML</strong> — semantic, readable content with no CSS
+                or JavaScript dependency.
+              </li>
+              <li>
+                <strong>CSS baseline</strong> — mobile-first defaults; single
+                column, readable typography, adequate touch targets.
+              </li>
+              <li>
+                <strong>Container queries</strong> — components respond to their
+                container, enabling reuse across sidebars, modals, and full-page
+                layouts without duplication.
+              </li>
+              <li>
+                <strong>Carbon-aware enhancements</strong> — transitions,
+                decorative images, and animations are added only when the user
+                has not opted out via OS or browser preferences.
+              </li>
+            </ol>
+          </section>
+
+          <!-- ── Section 6: WSG references ──────────────────────────────────── -->
+          <section class="demo-section" aria-labelledby="refs-heading">
+            <h2 id="refs-heading">6. WSG references</h2>
+            <table>
+              <caption>
+                Relevant Web Sustainability Guideline mappings
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Guideline</th>
+                  <th scope="col">Technique demonstrated</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <a
+                      href="https://www.w3.org/TR/web-sustainability-guidelines/#ensure-layouts-work-for-different-devices-and-requirements"
+                    >WSG 3.6 — Layouts for different devices</a
+                    >
+                  </td>
+                  <td>Container queries, mobile-first defaults, sidebar layout</td>
+                </tr>
+                <tr>
+                  <td>
+                    <a
+                      href="https://www.w3.org/TR/web-sustainability-guidelines/#develop-a-mobile-first-layout"
+                    >WSG 3.14 — Mobile-first layout</a
+                    >
+                  </td>
+                  <td>Single-column base, progressive column expansion</td>
+                </tr>
+                <tr>
+                  <td>
+                    <a
+                      href="https://www.w3.org/TR/web-sustainability-guidelines/#avoid-distracting-or-unnecessary-motion"
+                    >WSG 2.15 — Avoid unnecessary motion</a
+                    >
+                  </td>
+                  <td>
+                    <code>prefers-reduced-motion: no-preference</code> gate on
+                    transitions
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <a
+                      href="https://www.w3.org/TR/web-sustainability-guidelines/#ensure-your-solutions-are-accessible"
+                    >WSG 3.12 — Accessible solutions</a
+                    >
+                  </td>
+                  <td>
+                    Semantic landmarks, heading order, aria-label on
+                    multi-purpose containers
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <aside aria-label="Further reading">
+            <h2>Further reading</h2>
+            <ul>
+              <li>
+                <a
+                  href="https://www.w3.org/TR/web-sustainability-guidelines/#ensure-layouts-work-for-different-devices-and-requirements"
+                >WSG — Ensure Layouts Work for Different Devices and
+                Requirements</a
+                >
+              </li>
+              <li>
+                <a href="https://www.joshwcomeau.com/css/container-queries-introduction/"
+                >Josh W. Comeau — An Introduction to CSS Container Queries</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries"
+                >MDN — CSS Container Queries</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-data"
+                >MDN — prefers-reduced-data</a
+                >
+              </li>
+            </ul>
+          </aside>
+        </article>
+      </main>
+
+      <footer class="site-footer">
+        <p>
+          <strong>SUSTAINABILITY.md</strong> is an open policy format for
+          digital sustainability transparency and governance.
+        </p>
+        <p>
+          <a href="/sustainability.md/README.md">README</a>
+          ·
+          <a href="/sustainability.md/CONTRIBUTING.md">Contributing</a>
+          ·
+          <a href="https://github.com/mgifford/sustainability.md">GitHub Repo</a>
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

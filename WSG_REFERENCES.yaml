@@ -96,7 +96,12 @@ guidelines:
     name: "Use Code-Splitting Within Projects"
     description: "Load only the code needed for each page to reduce initial payload"
     url: "https://w3c.github.io/sustyweb/#WSG-3.4"
-  
+
+  WSG-3.6:
+    name: "Ensure Layouts Work for Different Devices and Requirements"
+    description: "Use mobile-first, container-query-driven layouts with carbon-aware progressive enhancement so pages render efficiently across all device classes"
+    url: "https://www.w3.org/TR/web-sustainability-guidelines/#ensure-layouts-work-for-different-devices-and-requirements"
+
   WSG-3.7:
     name: "Use HTML Elements Correctly"
     description: "Employ semantic HTML tags to improve rendering efficiency and accessibility"
