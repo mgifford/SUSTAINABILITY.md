@@ -1,0 +1,32 @@
+name: Accessibility Scanner
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: [Deploy Jekyll site to Pages]
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  a11y-scan:
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: github/accessibility-scanner@v2
+        with:
+          urls: |
+            https://mgifford.github.io/SUSTAINABILITY.md/
+            https://mgifford.github.io/SUSTAINABILITY.md/guidelines/
+            https://mgifford.github.io/SUSTAINABILITY.md/resources/
+            https://mgifford.github.io/SUSTAINABILITY.md/action-playbook/
+            https://mgifford.github.io/SUSTAINABILITY.md/reporting-sustainability-metrics/
+          repository: ${{ github.repository }}
+          token: ${{ secrets.GH_TOKEN }}
+          cache_key: a11y-mgifford-github-io-sustainability-md
