@@ -2,6 +2,17 @@
 
 These instructions guide AI-assisted contributions in this repository.
 
+## Canonical instruction files
+
+Before making any changes, read these files in the repository root:
+
+- [`AGENTS.md`](../AGENTS.md) — primary source of truth for all AI agent behavior, precedence rules, and contribution scope.
+- [`ACCESSIBILITY.md`](../ACCESSIBILITY.md) — inclusion, usability, and WCAG conformance requirements.
+- [`SUSTAINABILITY.md`](../SUSTAINABILITY.md) — performance, resource efficiency, and AI-usage limits.
+- [`CONTENT-STYLE-GUIDE.md`](../CONTENT-STYLE-GUIDE.md) — writing conventions, humans-first ordering, and tone.
+
+When instructions conflict, follow the precedence defined in `AGENTS.md`.
+
 ## Repository purpose
 
 This project defines and demonstrates practical sustainability governance for web projects, including:
