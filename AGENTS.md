@@ -37,6 +37,9 @@ If any instruction source conflicts, follow this precedence:
 - Validate Markdown/YAML after edits.
 - Prefer deterministic, low-compute solutions where feasible.
 - Minimize AI usage and keep prompts/task context as small as practical.
+- **AI disclosure required:** When AI is used to contribute to this repository, update the `## AI Disclosure` section in `README.md` as part of the same PR:
+  - Add or update a row in the "Models used" table with the model or tool name, its purpose, and when it was used.
+  - Do not list models or tools that have not been used.
 
 For AGENTS.md background and interoperability context, see:
 
