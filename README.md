@@ -225,6 +225,7 @@ This section documents actual AI usage in this project, distinct from the [AI us
 | Code assistance and PR support | GitHub Copilot (OpenAI Codex / GPT-4-class) | During development |
 | Content drafting and editing | OpenAI GPT-4-class via Copilot Chat | During development |
 | Policy review and improvement | OpenAI GPT-4-class via Copilot Chat | During development |
+| Automated code and content changes via agentic coding | GitHub Copilot Coding Agent (Claude / Anthropic) | During development |
 
 ---
 
