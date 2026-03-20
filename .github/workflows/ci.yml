@@ -13,6 +13,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Start energy measurement
+        uses: green-coding-solutions/eco-ci-energy-estimation@v5
+        with:
+          task: start-measurement
+        continue-on-error: true
+
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -68,6 +74,12 @@ jobs:
           args: --offline --no-progress --verbose ./**/*.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Display energy results
+        uses: green-coding-solutions/eco-ci-energy-estimation@v5
+        with:
+          task: display-results
+        continue-on-error: true
 
   html-lint:
     runs-on: ubuntu-latest
