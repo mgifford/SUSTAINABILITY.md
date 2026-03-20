@@ -28,5 +28,5 @@ jobs:
             https://mgifford.github.io/SUSTAINABILITY.md/action-playbook/
             https://mgifford.github.io/SUSTAINABILITY.md/reporting-sustainability-metrics/
           repository: ${{ github.repository }}
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ github.token }}
           cache_key: a11y-mgifford-github-io-sustainability-md
