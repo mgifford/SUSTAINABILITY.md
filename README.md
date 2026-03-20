@@ -226,6 +226,7 @@ This section documents actual AI usage in this project, distinct from the [AI us
 | Content drafting and editing | OpenAI GPT-4-class via Copilot Chat | During development |
 | Policy review and improvement | OpenAI GPT-4-class via Copilot Chat | During development |
 | Automated code and content changes via agentic coding | GitHub Copilot Coding Agent (Claude / Anthropic) | During development |
+| Adding eco-ci-energy-estimation integration and documentation | GitHub Copilot Coding Agent (Claude / Anthropic) | 2026-03-20 |
 
 ---
 

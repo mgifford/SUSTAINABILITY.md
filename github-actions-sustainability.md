@@ -135,6 +135,44 @@ Key metrics:
 - Cache hit rates
 - Failed job retry overhead
 
+### 5. Estimate CI energy with Eco CI
+
+[Eco CI Energy Estimation](https://github.com/marketplace/actions/eco-ci-energy-estimation) by Green Coding Solutions estimates energy consumption of GitHub Actions jobs using CPU
+utilization data and pre-calculated power curves from real hardware models. It works on GitHub-hosted runners without requiring physical hardware access.
+
+Add it to any job to measure energy and optional CO₂ estimates:
+
+```yaml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start energy measurement
+        uses: green-coding-solutions/eco-ci-energy-estimation@v5
+        with:
+          task: start-measurement
+        continue-on-error: true
+
+      # ... your build steps ...
+
+      - name: Display energy results
+        uses: green-coding-solutions/eco-ci-energy-estimation@v5
+        with:
+          task: display-results
+        continue-on-error: true
+```
+
+**What it provides:**
+- Energy estimate in Joules per job
+- CO₂ estimate in grams (using a configurable grid intensity constant or a live API)
+- Results can be posted as a PR comment (requires `pull-requests: write` permission) and optionally sent to [metrics.green-coding.io](https://metrics.green-coding.io/ci-index.html)
+
+**Trade-offs and limitations:**
+- Uses `continue-on-error: true` because the action can fail on some hosted runner configurations; this is the recommended production setting
+- Energy values are model-based estimates, not physical measurements — treat them as directional proxies and track trends rather than absolute values
+- By default, data is sent to `metrics.green-coding.io`; set `send-data: false` to keep results local
+- Requires at minimum `contents: read` permission; posting PR comments requires `pull-requests: write`
+
 ## Alternative approaches
 
 ### Carbon-aware workflow control (experimental)
@@ -197,13 +235,15 @@ If these capabilities are important to you:
 | Region selection         | ❌ Not available         | ✅ Full control              |
 | Carbon intensity API     | ❌ Not available         | ✅ Via external APIs         |
 | Time shifting            | ⚠️ Partial (no feedback) | ✅ With carbon awareness     |
-| Energy consumption data  | ❌ Not available         | ⚠️ Requires custom tooling   |
+| Energy consumption data  | ⚠️ Estimation via Eco CI | ⚠️ Requires custom tooling   |
 
 **Bottom line:** For sustainability-aware compute scheduling, self-hosted runners with external carbon intensity APIs are currently the only practical option. GitHub-hosted runners do not expose the data needed for informed region or time-shifting decisions.
 
 ## Related resources
 
 - [About self-hosted runners](https://docs.github.com/en/actions/hosting-your-own-runners)
+- [Eco CI Energy Estimation (GitHub Marketplace)](https://github.com/marketplace/actions/eco-ci-energy-estimation)
+- [Eco CI source repository](https://github.com/green-coding-solutions/eco-ci-energy-estimation)
 - [Electricity Maps API](https://app.electricitymaps.com/developer-hub/api/getting-started)
 - [Grid Intensity CLI](https://github.com/thegreenwebfoundation/grid-intensity)
 - [CO2.js for carbon estimation](https://developers.thegreenwebfoundation.org/co2js/overview/)

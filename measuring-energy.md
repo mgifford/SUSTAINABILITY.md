@@ -98,6 +98,7 @@ No single tool covers all five. Treat any measurement as a partial proxy, not a 
 
 - [Lighthouse CI](https://github.com/GoogleChrome/lighthouse-ci) – run Lighthouse in CI and block on regressions
 - [bundlesize](https://github.com/siddharthkp/bundlesize) / [size-limit](https://github.com/ai/size-limit) – enforce per-bundle weight budgets in CI
+- [Eco CI Energy Estimation](https://github.com/marketplace/actions/eco-ci-energy-estimation) – estimate energy and CO₂ for GitHub Actions jobs using CPU utilization and hardware power curves; works on hosted runners
 
 ### Transmission: limitations
 
@@ -261,6 +262,7 @@ Review your analytics for:
 | WebPageTest               | Transmission, Execution | Multi-location, filmstrip, CPU traces                | Synthetic; free tier limited                          |
 | Chrome DevTools           | Execution               | Flame charts, paint, layout, compositing             | No watt reading; fast hardware only                   |
 | Lighthouse CI             | Transmission, Execution | CI regression gates on performance budgets           | Synthetic; needs baseline to be useful                |
+| Eco CI Energy Estimation  | Server (CI/CD)          | Energy (Joules) and CO₂ estimate per CI job          | Model-based estimate; not a physical measurement      |
 | CrUX / RUM                | Execution               | Real user Core Web Vitals                            | No direct energy signal                               |
 | Scaphandre / Kepler       | Server                  | Power draw on bare-metal/Kubernetes                  | Requires infra access; not on shared hosting          |
 | Cloud providers dashboard | Server, Storage         | Org/project-level carbon estimates                   | Spending-based allocation; not per-request            |
@@ -285,6 +287,7 @@ Review your analytics for:
 - [Sustainable Web Design model (SWD)](https://sustainablewebdesign.org/estimating-digital-emissions/)
 - [Google Lighthouse overview](https://developer.chrome.com/docs/lighthouse/overview/)
 - [WebPageTest](https://www.webpagetest.org/)
+- [Eco CI Energy Estimation](https://github.com/marketplace/actions/eco-ci-energy-estimation)
 - [Scaphandre power monitoring](https://github.com/hubblo-org/scaphandre)
 - [Kepler – Kubernetes energy monitoring (CNCF)](https://github.com/sustainable-computing-io/kepler)
 - [Green Web Foundation – hosting check](https://www.thegreenwebfoundation.org/)
