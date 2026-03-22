@@ -228,6 +228,7 @@ This section documents actual AI usage in this project, distinct from the [AI us
 | Automated code and content changes via agentic coding | GitHub Copilot Coding Agent (Claude / Anthropic) | During development |
 | Adding eco-ci-energy-estimation integration and documentation | GitHub Copilot Coding Agent (Claude / Anthropic) | 2026-03-20 |
 | Fix a11y-scan workflow token (use github.token instead of secrets.GH_TOKEN) | GitHub Copilot Coding Agent (Claude / Anthropic) | 2026-03-20 |
+| Fix scrollable-region-focusable accessibility violation on `<pre>` element | GitHub Copilot Coding Agent (Claude / Anthropic) | 2026-03-20 |
 
 ---
 
