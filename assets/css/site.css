@@ -9,6 +9,9 @@
   --code: #f3f4f6;
   --button: #111111;
   --button-text: #ffffff;
+  --notice-bg: #fffbeb;
+  --notice-border-top: #f59e0b;
+  --notice-border-bottom: #fde68a;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,7 +25,43 @@
     --code: #0c1016;
     --button: #f3f4f6;
     --button-text: #111111;
+    --notice-bg: #1c1500;
+    --notice-border-top: #d97706;
+    --notice-border-bottom: #3d2e00;
   }
+}
+
+/* Manual theme overrides — applied by JavaScript when the user clicks the toggle */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0b0d10;
+  --bg-soft: #12161d;
+  --text: #f3f4f6;
+  --muted: #c5cad3;
+  --line: #2a2f3a;
+  --card: #0f1319;
+  --code: #0c1016;
+  --button: #f3f4f6;
+  --button-text: #111111;
+  --notice-bg: #1c1500;
+  --notice-border-top: #d97706;
+  --notice-border-bottom: #3d2e00;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --bg: #ffffff;
+  --bg-soft: #f7f7f8;
+  --text: #121212;
+  --muted: #4b5563;
+  --line: #e5e7eb;
+  --card: #ffffff;
+  --code: #f3f4f6;
+  --button: #111111;
+  --button-text: #ffffff;
+  --notice-bg: #fffbeb;
+  --notice-border-top: #f59e0b;
+  --notice-border-bottom: #fde68a;
 }
 
 * {
@@ -145,18 +184,10 @@ section {
 }
 
 .notice-experimental {
-  background: #fffbeb;
-  border-top: 4px solid #f59e0b;
-  border-bottom: 1px solid #fde68a;
+  background: var(--notice-bg);
+  border-top: 4px solid var(--notice-border-top);
+  border-bottom: 1px solid var(--notice-border-bottom);
   padding: 1.5rem 0;
-}
-
-@media (prefers-color-scheme: dark) {
-  .notice-experimental {
-    background: #1c1500;
-    border-top-color: #d97706;
-    border-bottom-color: #3d2e00;
-  }
 }
 
 .notice-experimental .notice-heading {
@@ -261,4 +292,86 @@ section h2 {
   .cards {
     grid-template-columns: 1fr;
   }
+}
+
+/* ── Site header with theme toggle ── */
+
+.site-header {
+  background: var(--bg-soft);
+  border-bottom: 1px solid var(--line);
+}
+
+.site-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0.4rem 0;
+}
+
+#theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--text);
+  cursor: pointer;
+  line-height: 0;
+}
+
+#theme-toggle:hover {
+  background: var(--bg-soft);
+  border-color: var(--text);
+}
+
+#theme-toggle:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+.theme-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+/* Default when no system preference exists or system preference is light:
+   show moon to indicate "switch to dark" */
+.sun-icon {
+  display: none;
+}
+
+.moon-icon {
+  display: block;
+}
+
+/* System dark mode (before JS loads): show sun to indicate "switch to light" */
+@media (prefers-color-scheme: dark) {
+  .sun-icon {
+    display: block;
+  }
+
+  .moon-icon {
+    display: none;
+  }
+}
+
+/* JS-controlled: dark theme active — show sun (click to go light) */
+[data-theme="dark"] .sun-icon {
+  display: block;
+}
+
+[data-theme="dark"] .moon-icon {
+  display: none;
+}
+
+/* JS-controlled: light theme active — show moon (click to go dark) */
+[data-theme="light"] .sun-icon {
+  display: none;
+}
+
+[data-theme="light"] .moon-icon {
+  display: block;
 }
