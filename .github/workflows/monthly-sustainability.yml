@@ -1,0 +1,41 @@
+name: Monthly Sustainability Snapshot
+
+on:
+  schedule:
+    - cron: '0 0 1 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sustainability-snapshot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Start energy measurement
+        uses: green-coding-solutions/eco-ci-energy-estimation@v5
+        with:
+          task: start-measurement
+          send-data: false
+        continue-on-error: true
+
+      - name: Run Lighthouse CI against production
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: ./.lighthouserc.pr.json
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Display energy results
+        uses: green-coding-solutions/eco-ci-energy-estimation@v5
+        with:
+          task: display-results
+          send-data: false
+        continue-on-error: true

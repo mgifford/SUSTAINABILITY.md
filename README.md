@@ -230,6 +230,7 @@ This section documents actual AI usage in this project, distinct from the [AI us
 | Fix a11y-scan workflow token (use github.token instead of secrets.GH_TOKEN) | GitHub Copilot Coding Agent (Claude / Anthropic) | 2026-03-20 |
 | Fix scrollable-region-focusable accessibility violation on `<pre>` element | GitHub Copilot Coding Agent (Claude / Anthropic) | 2026-03-20 |
 | Add light/dark mode toggle with sun/moon icons | GitHub Copilot Coding Agent (Claude Sonnet 4.5) | 2026-03-27 |
+| Integrate CI/CD sustainability best practices into SUSTAINABILITY.md | GitHub Copilot Coding Agent (Claude / Anthropic) | 2026-03-29 |
 
 ---
 
@@ -252,6 +253,7 @@ This section documents actual AI usage in this project, distinct from the [AI us
 - The repository intentionally does not track a committed local copy of `guidelines.json`.
 - CI checks run on pushes and pull requests for Markdown linting, YAML linting/validation, workflow linting, local link checking, and Jekyll build verification.
 - Lighthouse CI runs on every non-draft pull request against `https://mgifford.github.io/sustainability.md/` with category score gates (starter thresholds), and should be tightened over time toward 100 in all categories.
+- A monthly sustainability snapshot workflow (`.github/workflows/monthly-sustainability.yml`) runs a full Lighthouse audit on the first of each month and measures runner energy via Eco-CI, tracking long-term carbon trends.
 
 ## Contributing
 
