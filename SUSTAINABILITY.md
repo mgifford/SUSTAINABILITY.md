@@ -150,6 +150,52 @@ Supporting older browsers and devices directly reduces electronic waste and exte
 - Avoid unnecessary polyfills or heavy bundles that increase transfer and runtime cost.
 - Treat this as a sustainability requirement: forced hardware or OS churn because a site drops support prematurely has a real environmental cost.
 
+### 7) CI/CD sustainability practices
+
+Aligned with [WSG 4.4 – Use A Content Delivery Network](https://www.w3.org/TR/web-sustainability-guidelines/#use-a-content-delivery-network) and the zero-waste principle: every byte transferred and every CPU cycle burned in CI should be intentional.
+
+See [CI/CD Sustainability Best Practices](examples/CI_CD_SUSTAINABILITY_BEST_PRACTICES.md) for the full implementation guide. Key requirements below.
+
+#### Shared Lighthouse gate (unified audit)
+
+Run Google Lighthouse once per PR to gate both Performance and Accessibility in a single pass rather than two separate tools. One audit satisfies both `SUSTAINABILITY.md` and `ACCESSIBILITY.md` quality gates without doubling compute cost.
+
+- Current thresholds (starter): see `.lighthouserc.pr.json`; tighten toward 100 in all categories over time.
+- Add `total-byte-weight` assertion as a page-weight budget gate.
+- Use `mobile`/`emulatedFormFactor: mobile` to apply the tightest energy constraint.
+
+#### Local-first testing
+
+Run the bulk of auditing on developer machines before pushing to reduce failed-build cycles on CI runners:
+
+- Install Lighthouse CI locally: `npm install -g @lhci/cli`
+- Run `lhci autorun` locally before pushing to validate changes.
+- Use a pre-push hook (see `scripts/check-carbon-env.js`) to enforce this automatically.
+- Set `SUSTAINABILITY_SERVER_ONLY=true` to offload to CI when local energy is higher-carbon.
+
+#### Carbon measurement via CO2.js
+
+Use [CO2.js](https://developers.thegreenwebfoundation.org/co2js/overview/) (by The Green Web Foundation) to estimate per-page carbon load:
+
+- Track bytes transferred per page view and calculate CO2 equivalent using the Sustainable Web Design (SWD) model.
+- Target: under 0.3 g CO2e per initial page load.
+- Carbon budget breach (> 0.5 g CO2e per page view) triggers a manual Weight Reduction review — a focused effort to identify and remove heavy assets, third-party scripts, or unnecessary JavaScript contributing to the excess load.
+
+#### Monthly sustainability snapshot
+
+A full-site audit runs once per month (see `.github/workflows/monthly-sustainability.yml`):
+
+- Tracks the cumulative carbon cost of the site over time — the aggregate CO2e footprint across all audited pages each month.
+- Failures create GitHub Issues for follow-up triage.
+- Results are archived to monitor the site's environmental impact over time.
+
+#### Eco-CI energy measurement
+
+The `CI checks` workflow uses `green-coding-solutions/eco-ci-energy-estimation` to estimate runner energy use. These are model-based estimates — treat as directional trends, not absolute measurements:
+
+- Set `send-data: false` to keep results local and avoid sending data to `metrics.green-coding.io`.
+- Required permissions: `contents: read`; PR comments require `pull-requests: write`.
+
 ## Pull request checklist
 
 Each PR should include:
@@ -177,7 +223,7 @@ Document active sustainability debt here. Each entry needs an owner and a target
 | Issue | Status | Owner | Target date | Notes |
 | :--- | :--- | :--- | :--- | :--- |
 | Green hosting status unknown — GitHub Pages CDN energy mix is not published | open | @mgifford | 2026-06-30 | Monitor GitHub/Azure sustainability disclosures; consider self-hosted alternative if data becomes material |
-| No formal carbon budget established for page weight or CI compute | open | @mgifford | 2026-06-30 | Run baseline measurement; set initial budget thresholds in CI |
+| No formal carbon budget enforced in CI for page weight or CI compute | open | @mgifford | 2026-06-30 | Carbon budget targets documented (< 0.3 g CO2e per page load); wire CO2.js measurement into CI gate |
 | AI call volume per PR is tracked informally | open | @mgifford | 2026-09-30 | Add structured AI usage field to PR template; review monthly |
 | Grid-aware serving not yet implemented | open | @mgifford | 2026-12-31 | Evaluate feasibility; document in github-actions-sustainability.md |
 | Living metrics table has no current measured baseline values | open | @mgifford | 2026-06-30 | Run Lighthouse on production; record and publish initial baselines |
@@ -186,9 +232,11 @@ Document active sustainability debt here. Each entry needs an owner and a target
 
 - Page weight on key templates (target: establish baseline via Lighthouse CI, then set a budget ≤ current measured value)
 - Request counts and third-party requests (target: minimize; justify each third-party request)
+- CO2e per page view (target: < 0.3 g per initial page load via CO2.js SWD model; > 0.5 g triggers Weight Reduction review)
 - CI minutes and heavy-job frequency (target: downward trend; gate non-critical jobs on path filters)
 - AI calls per PR (target: downward trend; disclose in PR descriptions)
 - Deferrable jobs shifted to lower-carbon windows (target: track and increase over time)
+- Monthly Lighthouse scores across all categories (target: upward trend toward 100)
 
 ## Trusted references
 
@@ -230,6 +278,7 @@ This section documents actual AI usage in this project, separate from the AI usa
 | Code assistance and PR support | GitHub Copilot (OpenAI Codex / GPT-4-class) | During development |
 | Content drafting and policy editing | OpenAI GPT-4-class via Copilot Chat | During development |
 | Policy review and improvement | OpenAI GPT-4-class via Copilot Chat | During development |
+| Integrate CI/CD sustainability best practices into SUSTAINABILITY.md | GitHub Copilot Coding Agent (Claude / Anthropic) | 2026-03-29 |
 
 ## Agent instruction snippet
 
