@@ -34,6 +34,11 @@ jobs:
           uploadArtifacts: false
           temporaryPublicStorage: false
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
       - name: Generate badge SVGs
         run: node scripts/generate-lighthouse-badges.js
 
