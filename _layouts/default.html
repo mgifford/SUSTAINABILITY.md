@@ -176,6 +176,13 @@
           ·
           <a href="https://developers.thegreenwebfoundation.org/co2js/overview/">CO2.js docs</a>
         </p>
+        <!-- Firefox-only: UA sniff is intentional — Firefox Profiler is a Firefox-specific tool -->
+        <p class="footer-firefox-note" id="footer-firefox-note" hidden>
+          🦊 <strong>Firefox users:</strong> The estimate above uses the CO2.js SWD model.
+          You can compare it with a real power measurement using the
+          <a href="https://profiler.firefox.com/">Firefox Profiler</a> —
+          record a session on this page and check the Power track for an energy-based CO₂ figure.
+        </p>
         <p class="footer-cta">
           <a class="button secondary github-cta" href="{{ page.secondary_cta_url }}">
             <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false">
@@ -185,11 +192,6 @@
           </a>
         </p>
       </footer>
-      <!-- Firefox CO2 banner: UA sniff is intentional — this is a Firefox-only feature -->
-      <section class="firefox-banner" id="firefoxBanner" aria-label="Firefox CO2 estimate notification" hidden>
-        <span aria-live="polite">🦊 Firefox detected — Page CO2 estimate: <strong id="firefoxCO2">Calculating…</strong> (SWD model, CO2.js)</span>
-        <button type="button" id="dismissFirefoxBanner" aria-label="Dismiss Firefox CO2 estimate">✕</button>
-      </section>
     </div>
 
     <script type="module">
@@ -199,11 +201,8 @@
       const estimateEl = document.getElementById("footer-co2-estimate");
       const bytesEl = document.getElementById("footer-co2-bytes");
       const hostingEl = document.getElementById("footer-green-hosting");
-      const firefoxBanner = document.getElementById("firefoxBanner");
-      const firefoxCO2El = document.getElementById("firefoxCO2");
-      const dismissBtn = document.getElementById("dismissFirefoxBanner");
 
-      // UA sniff is intentional: Firefox Profiler CO2 feature is Firefox-only
+      // UA sniff is intentional: Firefox Profiler is a Firefox-specific tool
       const isFirefox = /firefox/i.test(navigator.userAgent);
 
       const formatBytes = (bytes) => {
@@ -236,10 +235,6 @@
 
           bytesEl.textContent = formatBytes(bytes);
           estimateEl.textContent = Number.isFinite(grams) ? `${grams.toFixed(3)} gCO2e / page view` : "Unavailable";
-
-          if (isFirefox && firefoxCO2El && Number.isFinite(grams)) {
-            firefoxCO2El.textContent = `${grams.toFixed(3)} gCO2e`;
-          }
         } catch (error) {
           bytesEl.textContent = "Unavailable";
           estimateEl.textContent = "Unavailable";
@@ -253,18 +248,11 @@
         }
       };
 
-      if (isFirefox && firefoxBanner) {
-        firefoxBanner.hidden = false;
-        if (dismissBtn) {
-          dismissBtn.addEventListener("click", () => {
-            firefoxBanner.hidden = true;
-            const focusTarget = document.querySelector("main h1, main");
-            if (focusTarget) {
-              focusTarget.setAttribute("tabindex", "-1");
-              focusTarget.focus();
-            }
-          });
-        }
+      // Show the Firefox Profiler note so Firefox users can compare the CO2.js
+      // model estimate above with a real power measurement from the profiler.
+      if (isFirefox) {
+        const firefoxNoteEl = document.getElementById("footer-firefox-note");
+        if (firefoxNoteEl) firefoxNoteEl.hidden = false;
       }
 
       if (document.readyState === "complete") {
