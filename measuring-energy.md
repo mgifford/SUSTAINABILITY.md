@@ -185,7 +185,7 @@ or the [CO2.js playground on Observable](https://observablehq.com/@greenweb/co2-
 | macOS (Apple Silicon) | Available; uses Apple Energy Model |
 | macOS (Intel) | Available; uses Intel RAPL via IOKit |
 | Linux | Available when `perf` is installed and has access to hardware counters |
-| Windows | Not currently available in Firefox Profiler |
+| Windows | Not available in Firefox Profiler |
 | Android (Firefox for Android) | Not available |
 
 If the Power track does not appear, execution time (Total Blocking Time, main-thread duration) is still a useful proxy: reducing execution time reliably reduces energy use.
