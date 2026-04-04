@@ -186,7 +186,7 @@
         </p>
       </footer>
       <!-- Firefox CO2 banner: UA sniff is intentional — this is a Firefox-only feature -->
-      <section class="firefox-banner" id="firefoxBanner" aria-label="Firefox sustainability metrics" hidden>
+      <section class="firefox-banner" id="firefoxBanner" aria-label="Firefox CO2 estimate notification" hidden>
         <span aria-live="polite">🦊 Firefox detected — Page CO2 estimate: <strong id="firefoxCO2">Calculating…</strong> (SWD model, CO2.js)</span>
         <button type="button" id="dismissFirefoxBanner" aria-label="Dismiss Firefox CO2 estimate">✕</button>
       </section>
@@ -256,7 +256,14 @@
       if (isFirefox && firefoxBanner) {
         firefoxBanner.hidden = false;
         if (dismissBtn) {
-          dismissBtn.addEventListener("click", () => { firefoxBanner.hidden = true; });
+          dismissBtn.addEventListener("click", () => {
+            firefoxBanner.hidden = true;
+            const focusTarget = document.querySelector("main h1, main");
+            if (focusTarget) {
+              focusTarget.setAttribute("tabindex", "-1");
+              focusTarget.focus();
+            }
+          });
         }
       }
 
