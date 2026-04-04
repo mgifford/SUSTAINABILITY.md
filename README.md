@@ -13,6 +13,11 @@ source_url: https://raw.githubusercontent.com/mgifford/sustainability.md/main/RE
 >
 > **AI disclosure:** This repository has been developed with AI-assisted drafting and implementation support, with human review and editing.
 
+[![Lighthouse Performance](badges/lighthouse-performance.svg)](https://mgifford.github.io/SUSTAINABILITY.md/)
+[![Lighthouse Accessibility](badges/lighthouse-accessibility.svg)](https://mgifford.github.io/SUSTAINABILITY.md/)
+[![Lighthouse Best Practices](badges/lighthouse-best-practices.svg)](https://mgifford.github.io/SUSTAINABILITY.md/)
+[![Lighthouse SEO](badges/lighthouse-seo.svg)](https://mgifford.github.io/SUSTAINABILITY.md/)
+
 Use this file like `SECURITY.md` or `AGENTS.md`: as an operational policy for humans and AI agents.
 
 ---
@@ -233,6 +238,7 @@ This section documents actual AI usage in this project, distinct from the [AI us
 | Integrate CI/CD sustainability best practices into SUSTAINABILITY.md | GitHub Copilot Coding Agent (Claude / Anthropic) | 2026-03-29 |
 | Add CO2.js energy footer to page layout; expand Firefox Profiler section in measuring-energy.md | GitHub Copilot Coding Agent (Claude / Anthropic) | 2026-04-04 |
 | Add Firefox CO2 banner to both page layouts (shown only in Firefox, using CO2.js) | GitHub Copilot Coding Agent (Claude Sonnet 4.5) | 2026-04-04 |
+| Add Lighthouse score badges to README via new badge generation workflow | GitHub Copilot Coding Agent (Claude Sonnet 4.5) | 2026-04-04 |
 
 ---
 
@@ -256,6 +262,7 @@ This section documents actual AI usage in this project, distinct from the [AI us
 - CI checks run on pushes and pull requests for Markdown linting, YAML linting/validation, workflow linting, local link checking, and Jekyll build verification.
 - Lighthouse CI runs on every non-draft pull request against `https://mgifford.github.io/sustainability.md/` with category score gates (starter thresholds), and should be tightened over time toward 100 in all categories.
 - A monthly sustainability snapshot workflow (`.github/workflows/monthly-sustainability.yml`) runs a full Lighthouse audit on the first of each month and measures runner energy via Eco-CI, tracking long-term carbon trends.
+- A Lighthouse badge workflow (`.github/workflows/lighthouse-badges.yml`) runs on pushes to `main` that affect content files, audits the home page, and commits updated SVG score badges to `badges/` for display in this README.
 
 ## Contributing
 

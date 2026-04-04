@@ -1,0 +1,44 @@
+name: Lighthouse Badges
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**/*.md'
+      - '**/*.html'
+      - '_layouts/**'
+      - '_includes/**'
+      - 'assets/**'
+      - '_config.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  lighthouse-badges:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run Lighthouse CI against home page
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            https://mgifford.github.io/SUSTAINABILITY.md/
+          uploadArtifacts: false
+          temporaryPublicStorage: false
+
+      - name: Generate badge SVGs
+        run: node scripts/generate-lighthouse-badges.js
+
+      - name: Commit badge files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add badges/
+          git diff --staged --quiet || git commit -m "chore: update Lighthouse score badges [skip ci]"
+          git push
