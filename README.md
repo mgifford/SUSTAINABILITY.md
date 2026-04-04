@@ -1,12 +1,3 @@
----
-layout: page
-title: Policy File
-meta_title: Policy File · SUSTAINABILITY.md
-description: Project instructions for reducing digital emissions, resource use, and waste across product, code, and operations.
-lede: A reference SUSTAINABILITY.md policy — use as-is or adapt for your own project.
-source_url: https://raw.githubusercontent.com/mgifford/sustainability.md/main/README.md
----
-
 > **Project instructions for reducing digital emissions, resource use, and waste across product, code, and operations.**
 
 > **Status:** Draft (work in progress).
@@ -239,6 +230,7 @@ This section documents actual AI usage in this project, distinct from the [AI us
 | Add CO2.js energy footer to page layout; expand Firefox Profiler section in measuring-energy.md | GitHub Copilot Coding Agent (Claude / Anthropic) | 2026-04-04 |
 | Add Firefox CO2 banner to both page layouts (shown only in Firefox, using CO2.js) | GitHub Copilot Coding Agent (Claude Sonnet 4.5) | 2026-04-04 |
 | Add Lighthouse score badges to README via new badge generation workflow | GitHub Copilot Coding Agent (Claude Sonnet 4.5) | 2026-04-04 |
+| Remove README frontmatter (visible on GitHub.com); add Jekyll defaults in _config.yml; add monthly schedule to lighthouse-badges workflow | GitHub Copilot Coding Agent (Claude Sonnet 4.5) | 2026-04-04 |
 
 ---
 
