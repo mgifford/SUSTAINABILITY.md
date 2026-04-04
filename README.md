@@ -231,6 +231,7 @@ This section documents actual AI usage in this project, distinct from the [AI us
 | Fix scrollable-region-focusable accessibility violation on `<pre>` element | GitHub Copilot Coding Agent (Claude / Anthropic) | 2026-03-20 |
 | Add light/dark mode toggle with sun/moon icons | GitHub Copilot Coding Agent (Claude Sonnet 4.5) | 2026-03-27 |
 | Integrate CI/CD sustainability best practices into SUSTAINABILITY.md | GitHub Copilot Coding Agent (Claude / Anthropic) | 2026-03-29 |
+| Add CO2.js energy footer to page layout; expand Firefox Profiler section in measuring-energy.md | GitHub Copilot Coding Agent (Claude / Anthropic) | 2026-04-04 |
 
 ---
 
