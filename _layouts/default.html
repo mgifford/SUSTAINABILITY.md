@@ -185,6 +185,11 @@
           </a>
         </p>
       </footer>
+      <!-- Firefox CO2 banner: UA sniff is intentional — this is a Firefox-only feature -->
+      <section class="firefox-banner" id="firefoxBanner" aria-label="Firefox CO2 estimate notification" hidden>
+        <span aria-live="polite">🦊 Firefox detected — Page CO2 estimate: <strong id="firefoxCO2">Calculating…</strong> (SWD model, CO2.js)</span>
+        <button type="button" id="dismissFirefoxBanner" aria-label="Dismiss Firefox CO2 estimate">✕</button>
+      </section>
     </div>
 
     <script type="module">
@@ -194,6 +199,12 @@
       const estimateEl = document.getElementById("footer-co2-estimate");
       const bytesEl = document.getElementById("footer-co2-bytes");
       const hostingEl = document.getElementById("footer-green-hosting");
+      const firefoxBanner = document.getElementById("firefoxBanner");
+      const firefoxCO2El = document.getElementById("firefoxCO2");
+      const dismissBtn = document.getElementById("dismissFirefoxBanner");
+
+      // UA sniff is intentional: Firefox Profiler CO2 feature is Firefox-only
+      const isFirefox = /firefox/i.test(navigator.userAgent);
 
       const formatBytes = (bytes) => {
         if (!Number.isFinite(bytes) || bytes <= 0) return "0 B";
@@ -225,6 +236,10 @@
 
           bytesEl.textContent = formatBytes(bytes);
           estimateEl.textContent = Number.isFinite(grams) ? `${grams.toFixed(3)} gCO2e / page view` : "Unavailable";
+
+          if (isFirefox && firefoxCO2El && Number.isFinite(grams)) {
+            firefoxCO2El.textContent = `${grams.toFixed(3)} gCO2e`;
+          }
         } catch (error) {
           bytesEl.textContent = "Unavailable";
           estimateEl.textContent = "Unavailable";
@@ -237,6 +252,20 @@
           hostingEl.textContent = "Unavailable";
         }
       };
+
+      if (isFirefox && firefoxBanner) {
+        firefoxBanner.hidden = false;
+        if (dismissBtn) {
+          dismissBtn.addEventListener("click", () => {
+            firefoxBanner.hidden = true;
+            const focusTarget = document.querySelector("main h1, main");
+            if (focusTarget) {
+              focusTarget.setAttribute("tabindex", "-1");
+              focusTarget.focus();
+            }
+          });
+        }
+      }
 
       if (document.readyState === "complete") {
         render();
