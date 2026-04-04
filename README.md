@@ -232,6 +232,7 @@ This section documents actual AI usage in this project, distinct from the [AI us
 | Add Lighthouse score badges to README via new badge generation workflow | GitHub Copilot Coding Agent (Claude Sonnet 4.5) | 2026-04-04 |
 | Remove README frontmatter (visible on GitHub.com); add Jekyll defaults in _config.yml; add monthly schedule to lighthouse-badges workflow | GitHub Copilot Coding Agent (Claude Sonnet 4.5) | 2026-04-04 |
 | Upgrade Node.js from 20 to 24 (latest stable LTS) in CI workflows and add .nvmrc | GitHub Copilot Coding Agent (Claude Sonnet 4.5) | 2026-04-04 |
+| Sync Firefox Profiler instructions from html2html repository | Antigravity Coding Agent (Gemini 3.1 Pro) | 2026-04-04 |
 
 ---
 

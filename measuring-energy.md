@@ -156,7 +156,7 @@ Firefox Profiler exposes a **Power** track when running on supported hardware (m
 
 **Steps:**
 
-1. Open [profiler.firefox.com](https://profiler.firefox.com/) in Firefox, or enable the profiler toolbar button via `about:profiling`.
+1. Open **Firefox Profiler**: go to `about:profiling`, enable the [Firefox Profiler Menu Button](https://profiler.firefox.com), or use the DevTools Performance panel.
 2. In the profiler settings, ensure **Power** is checked under the available tracks.
 3. Click **Start Recording**, then perform the interaction you want to measure (a page load, a scroll, a button click, a form submit).
 4. Click **Capture Recording**. The profile opens in the Firefox Profiler UI.
