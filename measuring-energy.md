@@ -147,8 +147,48 @@ No single tool covers all five. Treat any measurement as a partial proxy, not a 
 #### Browser profiling
 
 - Chrome DevTools Performance panel – flame charts showing JS execution, layout, paint, and compositing
-- Firefox Profiler – similar flame chart; useful for cross-browser comparison
+- [Firefox Profiler](https://profiler.firefox.com/) – flame chart with a dedicated **Power** track that shows real CPU power draw (watts); useful for cross-browser comparison and the only mainstream browser profiler with built-in energy data
 - [Core Web Vitals](https://web.dev/explore/learn-core-web-vitals) – Interaction to Next Paint (INP), Largest Contentful Paint (LCP), Cumulative Layout Shift (CLS)
+
+##### Using Firefox Profiler to measure execution energy
+
+Firefox Profiler exposes a **Power** track when running on supported hardware (macOS with Apple Silicon or Intel, and Linux with `perf` support). This is the closest a browser comes to reporting actual device energy use.
+
+**Steps:**
+
+1. Open [profiler.firefox.com](https://profiler.firefox.com/) in Firefox, or enable the profiler toolbar button via `about:profiling`.
+2. In the profiler settings, ensure **Power** is checked under the available tracks.
+3. Click **Start Recording**, then perform the interaction you want to measure (a page load, a scroll, a button click, a form submit).
+4. Click **Capture Recording**. The profile opens in the Firefox Profiler UI.
+5. In the timeline at the top, locate the **Power** track. It shows power consumption in milliwatts over time.
+6. Select a time range in the Power track to zoom into a specific interaction. The flame chart below updates to show which functions ran during that window.
+7. Look for:
+   - **Sustained high power** during an interaction that should be fast — indicates unnecessary JS execution, layout thrashing, or expensive paint.
+   - **Power spikes during idle** — indicates timers, polling, or background tasks keeping the CPU awake.
+   - **Disproportionate power for a small interaction** — a sign the cost can be reduced.
+
+**Sharing a profile for review:**
+
+Use **Upload Local Profile** in the profiler UI to share a profile URL without uploading any source code. Profiles can be reviewed asynchronously by teammates or filed alongside issues.
+
+**Pairing with transmission-layer estimates:**
+
+The Power track covers execution energy (CPU/GPU). To pair it with a transmission-layer CO₂ estimate,
+note the total transfer size from the Network panel DevTools (or the page emissions line in the site
+footer), then cross-reference using [CO2.js](https://developers.thegreenwebfoundation.org/co2js/overview/)
+or the [CO2.js playground on Observable](https://observablehq.com/@greenweb/co2-js-playground).
+
+**Hardware and platform notes:**
+
+| Platform | Power track availability |
+| :--- | :--- |
+| macOS (Apple Silicon) | Available; uses Apple Energy Model |
+| macOS (Intel) | Available; uses Intel RAPL via IOKit |
+| Linux | Available when `perf` is installed and has access to hardware counters |
+| Windows | Not available in Firefox Profiler |
+| Android (Firefox for Android) | Not available |
+
+If the Power track does not appear, execution time (Total Blocking Time, main-thread duration) is still a useful proxy: reducing execution time reliably reduces energy use.
 
 #### Synthetic auditing
 
@@ -163,7 +203,8 @@ No single tool covers all five. Treat any measurement as a partial proxy, not a 
 ### Execution: limitations
 
 - Browser DevTools and Lighthouse use a single (usually fast) machine. Energy cost on older or lower-power devices is much higher and rarely tested.
-- There is no direct watt-hour reading available in browsers; execution time and CPU utilization are proxies for energy.
+- Firefox Profiler's Power track requires supported hardware (macOS or Linux with `perf`); it is not available on Windows or Android. When unavailable, execution time (Total Blocking Time, main-thread duration) remains a reliable proxy.
+- There is no direct watt-hour reading available in most browsers; execution time and CPU utilization are proxies for energy.
 - Third-party scripts are often the largest source of execution cost but hardest to control.
 
 ---
@@ -255,18 +296,19 @@ Review your analytics for:
 
 ## Tool summary
 
-| Tool                      | Layer(s)                | What it gives you                                    | Limitations                                           |
-| :------------------------ | :---------------------- | :--------------------------------------------------- | :---------------------------------------------------- |
-| Google Lighthouse         | Transmission, Execution | Page weight, JS cost, blocking time audits           | Synthetic only; one device and network                |
-| CO2.js                    | Transmission            | Bytes to CO₂ estimate (SWD or OneByte model)         | System average; not path-specific                     |
-| WebPageTest               | Transmission, Execution | Multi-location, filmstrip, CPU traces                | Synthetic; free tier limited                          |
-| Chrome DevTools           | Execution               | Flame charts, paint, layout, compositing             | No watt reading; fast hardware only                   |
-| Lighthouse CI             | Transmission, Execution | CI regression gates on performance budgets           | Synthetic; needs baseline to be useful                |
-| Eco CI Energy Estimation  | Server (CI/CD)          | Energy (Joules) and CO₂ estimate per CI job          | Model-based estimate; not a physical measurement      |
-| CrUX / RUM                | Execution               | Real user Core Web Vitals                            | No direct energy signal                               |
-| Scaphandre / Kepler       | Server                  | Power draw on bare-metal/Kubernetes                  | Requires infra access; not on shared hosting          |
-| Cloud providers dashboard | Server, Storage         | Org/project-level carbon estimates                   | Spending-based allocation; not per-request            |
-| Web analytics             | Engagement              | Session duration, bounce rate                        | No energy signal; behavioral proxy only               |
+| Tool                      | Layer(s)                | What it gives you                                             | Limitations                                                              |
+| :------------------------ | :---------------------- | :------------------------------------------------------------ | :----------------------------------------------------------------------- |
+| Google Lighthouse         | Transmission, Execution | Page weight, JS cost, blocking time audits                    | Synthetic only; one device and network                                   |
+| CO2.js                    | Transmission            | Bytes to CO₂ estimate (SWD or OneByte model)                  | System average; not path-specific                                        |
+| WebPageTest               | Transmission, Execution | Multi-location, filmstrip, CPU traces                         | Synthetic; free tier limited                                             |
+| Chrome DevTools           | Execution               | Flame charts, paint, layout, compositing                      | No watt reading; fast hardware only                                      |
+| Firefox Profiler          | Execution               | Flame chart + Power track (milliwatts) on supported hardware  | Power track requires macOS or Linux with `perf`; unavailable on Windows  |
+| Lighthouse CI             | Transmission, Execution | CI regression gates on performance budgets                    | Synthetic; needs baseline to be useful                                   |
+| Eco CI Energy Estimation  | Server (CI/CD)          | Energy (Joules) and CO₂ estimate per CI job                   | Model-based estimate; not a physical measurement                         |
+| CrUX / RUM                | Execution               | Real user Core Web Vitals                                     | No direct energy signal                                                  |
+| Scaphandre / Kepler       | Server                  | Power draw on bare-metal/Kubernetes                           | Requires infra access; not on shared hosting                             |
+| Cloud providers dashboard | Server, Storage         | Org/project-level carbon estimates                            | Spending-based allocation; not per-request                               |
+| Web analytics             | Engagement              | Session duration, bounce rate                                 | No energy signal; behavioral proxy only                                  |
 
 ---
 
@@ -285,6 +327,8 @@ Review your analytics for:
 - [W3C WSG – Set Goals Based on Performance and Energy Impact](https://www.w3.org/TR/web-sustainability-guidelines/#set-goals-based-on-performance-and-energy-impact)
 - [CO2.js documentation](https://developers.thegreenwebfoundation.org/co2js/overview/)
 - [Sustainable Web Design model (SWD)](https://sustainablewebdesign.org/estimating-digital-emissions/)
+- [Firefox Profiler](https://profiler.firefox.com/) – flame chart profiler with Power track for CPU energy measurement
+- [Firefox Profiler – Power profiling documentation](https://profiler.firefox.com/docs/#/./guide-power-profiling)
 - [Google Lighthouse overview](https://developer.chrome.com/docs/lighthouse/overview/)
 - [WebPageTest](https://www.webpagetest.org/)
 - [Eco CI Energy Estimation](https://github.com/marketplace/actions/eco-ci-energy-estimation)
@@ -296,5 +340,5 @@ Review your analytics for:
 
 ---
 
-**Last updated:** 2026-03-11
+**Last updated:** 2026-04-04
 **Status:** Current as of tooling review; update tool versions and model references as the field evolves.
